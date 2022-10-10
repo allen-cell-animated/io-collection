@@ -1,0 +1,7 @@
+io\_collection package
+======================
+
+.. automodule:: io_collection
+   :members:
+   :undoc-members:
+   :show-inheritance:
