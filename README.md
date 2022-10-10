@@ -1,2 +1,5 @@
-# io-collection
-Collection of tasks for I/O
+[![Build Status](https://github.com/allen-cell-animated/io-collection/workflows/build/badge.svg)](https://github.com/allen-cell-animated/io-collection/actions?query=workflow%3Abuild)
+[![Codecov](https://img.shields.io/codecov/c/gh/allen-cell-animated/io-collection?token=KQTGXCOLLU)](https://codecov.io/gh/allen-cell-animated/io-collection)
+[![Lint Status](https://github.com/allen-cell-animated/io-collection/workflows/lint/badge.svg)](https://github.com/allen-cell-animated/io-collection/actions?query=workflow%3Alint)
+[![Documentation](https://github.com/allen-cell-animated/io-collection/workflows/documentation/badge.svg)](https://allen-cell-animated.github.io/io-collection/)
+[![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
