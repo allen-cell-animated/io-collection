@@ -5,7 +5,7 @@ from typing import Any
 from prefect import task
 import pandas as pd
 
-from io_collection.save.task_save_buffer import save_buffer_to_s3
+from io_collection.save.save_buffer import save_buffer_to_s3
 
 
 @task

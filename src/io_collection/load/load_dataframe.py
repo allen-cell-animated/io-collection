@@ -4,7 +4,7 @@ from typing import Any
 import pandas as pd
 from prefect import task
 
-from io_collection.load.task_load_buffer import load_buffer_from_s3
+from io_collection.load.load_buffer import load_buffer_from_s3
 
 
 @task
