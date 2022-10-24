@@ -1,0 +1,17 @@
+io\_collection.keys package
+===========================
+
+.. automodule:: io_collection.keys
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   io_collection.keys.check_key_exists
+   io_collection.keys.get_keys
+   io_collection.keys.make_key
