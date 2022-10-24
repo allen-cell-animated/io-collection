@@ -1,0 +1,17 @@
+io\_collection.save package
+===========================
+
+.. automodule:: io_collection.save
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   io_collection.save.save_buffer
+   io_collection.save.save_dataframe
+   io_collection.save.save_text

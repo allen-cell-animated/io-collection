@@ -1,0 +1,7 @@
+io\_collection.load.load\_dataframe module
+==========================================
+
+.. automodule:: io_collection.load.load_dataframe
+   :members:
+   :undoc-members:
+   :show-inheritance:

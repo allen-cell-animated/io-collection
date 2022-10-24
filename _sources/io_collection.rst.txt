@@ -5,3 +5,12 @@ io\_collection package
    :members:
    :undoc-members:
    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   io_collection.load
+   io_collection.save

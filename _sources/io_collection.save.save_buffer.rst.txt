@@ -1,0 +1,7 @@
+io\_collection.save.save\_buffer module
+=======================================
+
+.. automodule:: io_collection.save.save_buffer
+   :members:
+   :undoc-members:
+   :show-inheritance:

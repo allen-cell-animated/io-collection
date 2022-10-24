@@ -1,0 +1,7 @@
+io\_collection.save.save\_text module
+=====================================
+
+.. automodule:: io_collection.save.save_text
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+io\_collection.save.save\_dataframe module
+==========================================
+
+.. automodule:: io_collection.save.save_dataframe
+   :members:
+   :undoc-members:
+   :show-inheritance:
