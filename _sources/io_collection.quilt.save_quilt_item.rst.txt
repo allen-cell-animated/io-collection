@@ -1,0 +1,7 @@
+io\_collection.quilt.save\_quilt\_item module
+=============================================
+
+.. automodule:: io_collection.quilt.save_quilt_item
+   :members:
+   :undoc-members:
+   :show-inheritance:

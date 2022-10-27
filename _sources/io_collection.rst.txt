@@ -14,4 +14,5 @@ Subpackages
 
    io_collection.keys
    io_collection.load
+   io_collection.quilt
    io_collection.save

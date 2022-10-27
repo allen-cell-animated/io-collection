@@ -1,0 +1,7 @@
+io\_collection.quilt.load\_quilt\_package module
+================================================
+
+.. automodule:: io_collection.quilt.load_quilt_package
+   :members:
+   :undoc-members:
+   :show-inheritance:

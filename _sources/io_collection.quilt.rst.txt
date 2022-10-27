@@ -1,0 +1,16 @@
+io\_collection.quilt package
+============================
+
+.. automodule:: io_collection.quilt
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   io_collection.quilt.load_quilt_package
+   io_collection.quilt.save_quilt_item
