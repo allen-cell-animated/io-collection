@@ -8,19 +8,19 @@ from prefect import task
 @task
 def get_keys(location: str, prefix: str) -> list[str]:
     if location[:5] == "s3://":
-        return get_keys_s3(location[5:], prefix)
+        return get_keys_from_s3(location[5:], prefix)
     else:
-        return get_keys_fs(location, prefix)
+        return get_keys_from_fs(location, prefix)
 
 
-def get_keys_fs(path: str, prefix: str) -> list[str]:
+def get_keys_from_fs(path: str, prefix: str) -> list[str]:
     all_files = glob(f"{path}{prefix}/**/*", recursive=True)
     regular_files = [file for file in all_files if not os.path.isdir(file)]
     keys = [file.replace(path, "") for file in regular_files]
     return keys
 
 
-def get_keys_s3(bucket: str, prefix: str) -> list[str]:
+def get_keys_from_s3(bucket: str, prefix: str) -> list[str]:
     s3_client = boto3.client("s3")
 
     bucket = bucket.replace("s3://", "")
