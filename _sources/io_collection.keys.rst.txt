@@ -12,6 +12,7 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   io_collection.keys.check_key_exists
+   io_collection.keys.change_key
+   io_collection.keys.check_key
    io_collection.keys.get_keys
    io_collection.keys.make_key

@@ -1,0 +1,7 @@
+io\_collection.keys.change\_key module
+======================================
+
+.. automodule:: io_collection.keys.change_key
+   :members:
+   :undoc-members:
+   :show-inheritance:
