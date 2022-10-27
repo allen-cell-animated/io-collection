@@ -1,0 +1,7 @@
+io\_collection.load.load\_image module
+======================================
+
+.. automodule:: io_collection.load.load_image
+   :members:
+   :undoc-members:
+   :show-inheritance:
