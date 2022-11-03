@@ -1,0 +1,7 @@
+io\_collection.keys.copy\_key module
+====================================
+
+.. automodule:: io_collection.keys.copy_key
+   :members:
+   :undoc-members:
+   :show-inheritance:
