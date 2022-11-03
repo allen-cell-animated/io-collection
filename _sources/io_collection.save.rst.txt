@@ -15,4 +15,5 @@ Submodules
    io_collection.save.save_buffer
    io_collection.save.save_dataframe
    io_collection.save.save_figure
+   io_collection.save.save_json
    io_collection.save.save_text
