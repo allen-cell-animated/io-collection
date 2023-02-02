@@ -17,4 +17,5 @@ Submodules
    io_collection.save.save_figure
    io_collection.save.save_image
    io_collection.save.save_json
+   io_collection.save.save_tar
    io_collection.save.save_text
