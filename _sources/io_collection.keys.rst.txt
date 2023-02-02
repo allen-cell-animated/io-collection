@@ -17,3 +17,4 @@ Submodules
    io_collection.keys.copy_key
    io_collection.keys.get_keys
    io_collection.keys.make_key
+   io_collection.keys.remove_key
