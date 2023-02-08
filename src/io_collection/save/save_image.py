@@ -1,10 +1,10 @@
-import tempfile
 import os
+import tempfile
 
 import boto3
-from prefect import task
-from aicsimageio.writers import OmeTiffWriter
 import numpy as np
+from aicsimageio.writers import OmeTiffWriter
+from prefect import task
 
 
 @task

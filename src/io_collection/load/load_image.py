@@ -1,9 +1,9 @@
 import os
 from typing import Optional
 
-from prefect import task
 from aicsimageio import AICSImage
 from aicsimageio.readers import OmeTiffReader, TiffReader
+from prefect import task
 
 
 @task

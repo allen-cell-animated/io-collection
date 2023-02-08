@@ -4,8 +4,8 @@ import tarfile
 from prefect import task
 
 from io_collection.keys.check_key import check_key
-from io_collection.load.load_tar import load_tar
 from io_collection.load.load_buffer import load_buffer
+from io_collection.load.load_tar import load_tar
 from io_collection.save.save_buffer import save_buffer
 
 
