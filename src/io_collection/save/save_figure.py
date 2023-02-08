@@ -2,8 +2,8 @@ import io
 import os
 from typing import Any
 
-from prefect import task
 import matplotlib.figure as mpl
+from prefect import task
 
 from io_collection.save.save_buffer import save_buffer_to_s3
 
