@@ -3,5 +3,6 @@ from .save_dataframe import save_dataframe
 from .save_figure import save_figure
 from .save_image import save_image
 from .save_json import save_json
+from .save_pickle import save_pickle
 from .save_tar import save_tar
 from .save_text import save_text
