@@ -11,4 +11,7 @@ def make_key(*subkeys: str) -> str:
     timestamp = datetime.now().strftime("%Y-%m-%d")
     key = key.replace("{{timestamp}}", timestamp)
 
+    key = key.replace("__", "_")
+    key = key.replace("_.", ".")
+
     return key
