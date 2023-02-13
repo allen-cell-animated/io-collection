@@ -1,6 +1,7 @@
 from .save_buffer import save_buffer
 from .save_dataframe import save_dataframe
 from .save_figure import save_figure
+from .save_gif import save_gif
 from .save_image import save_image
 from .save_json import save_json
 from .save_pickle import save_pickle
