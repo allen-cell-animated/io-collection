@@ -1,5 +1,6 @@
 import json
 import re
+from typing import Union
 
 from prefect import task
 
@@ -7,7 +8,7 @@ from io_collection.save.save_text import save_text
 
 
 @task
-def save_json(location: str, key: str, obj: dict, levels: int = 5) -> None:
+def save_json(location: str, key: str, obj: Union[dict, list], levels: int = 5) -> None:
     contents = json.dumps(obj, indent=2)
 
     for level in range(1, levels + 1):
