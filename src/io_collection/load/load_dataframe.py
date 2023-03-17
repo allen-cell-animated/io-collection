@@ -2,12 +2,10 @@ import os
 from typing import Any
 
 import pandas as pd
-from prefect import task
 
 from io_collection.load.load_buffer import load_buffer_from_s3
 
 
-@task
 def load_dataframe(location: str, key: str, **kwargs: Any) -> pd.DataFrame:
     if location[:5] == "s3://":
         return load_dataframe_from_s3(location[5:], key, **kwargs)

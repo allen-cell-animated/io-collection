@@ -1,12 +1,9 @@
 import io
 import os
 
-from prefect import task
-
 from io_collection.save.save_buffer import save_buffer_to_s3
 
 
-@task
 def save_text(location: str, key: str, text: str) -> None:
     if location[:5] == "s3://":
         save_text_to_s3(location[5:], key, text)

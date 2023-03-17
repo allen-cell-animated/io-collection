@@ -2,12 +2,10 @@ import io
 import os
 
 import boto3
-from prefect import task
 
 MAX_CONTENT_LENGTH = 2**31 - 1
 
 
-@task
 def load_buffer(location: str, key: str) -> io.BytesIO:
     if location[:5] == "s3://":
         return load_buffer_from_s3(location[5:], key)

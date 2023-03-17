@@ -1,6 +1,14 @@
-from .load_buffer import load_buffer
-from .load_dataframe import load_dataframe
-from .load_image import load_image
-from .load_pickle import load_pickle
-from .load_tar import load_tar
-from .load_text import load_text
+import importlib
+import os
+import sys
+
+from prefect import task
+
+for module_file in os.listdir(os.path.dirname(__file__)):
+    if module_file == "__init__.py" or not module_file.endswith(".py"):
+        continue
+
+    module_name = module_file.replace(".py", "")
+
+    module = importlib.import_module(f".{module_name}", package=__name__)
+    setattr(sys.modules[__name__], module_name, task(getattr(module, module_name)))

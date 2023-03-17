@@ -2,12 +2,9 @@ import json
 import re
 from typing import Union
 
-from prefect import task
-
 from io_collection.save.save_text import save_text
 
 
-@task
 def save_json(location: str, key: str, obj: Union[dict, list], levels: int = 5) -> None:
     contents = json.dumps(obj, indent=2)
 
@@ -17,4 +14,4 @@ def save_json(location: str, key: str, obj: Union[dict, list], levels: int = 5) 
         pattern = re.compile(match_pattern)
         contents = pattern.sub(sub_pattern, contents)
 
-    save_text.fn(location, key, contents)
+    save_text(location, key, contents)

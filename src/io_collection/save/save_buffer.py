@@ -2,10 +2,8 @@ import io
 import os
 
 import boto3
-from prefect import task
 
 
-@task
 def save_buffer(location: str, key: str, buffer: io.BytesIO) -> None:
     if location[:5] == "s3://":
         save_buffer_to_s3(location[5:], key, buffer)

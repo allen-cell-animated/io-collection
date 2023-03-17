@@ -2,10 +2,8 @@ import os
 import shutil
 
 import boto3
-from prefect import task
 
 
-@task
 def copy_key(location: str, old_key: str, new_key: str) -> None:
     if location[:5] == "s3://":
         copy_key_on_s3(location[5:], old_key, new_key)

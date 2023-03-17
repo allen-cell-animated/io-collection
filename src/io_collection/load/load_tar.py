@@ -1,12 +1,9 @@
 import os
 import tarfile
 
-from prefect import task
-
 from io_collection.load.load_buffer import load_buffer_from_s3
 
 
-@task(persist_result=False)
 def load_tar(location: str, key: str) -> tarfile.TarFile:
     if location[:5] == "s3://":
         return load_tar_from_s3(location[5:], key)

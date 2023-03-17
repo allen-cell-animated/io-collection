@@ -3,12 +3,10 @@ import os
 from typing import Any
 
 import matplotlib.figure as mpl
-from prefect import task
 
 from io_collection.save.save_buffer import save_buffer_to_s3
 
 
-@task
 def save_figure(location: str, key: str, figure: mpl.Figure, **kwargs: Any) -> None:
     if location[:5] == "s3://":
         save_figure_to_s3(location[5:], key, figure, **kwargs)

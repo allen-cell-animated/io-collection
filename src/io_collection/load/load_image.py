@@ -3,10 +3,8 @@ from typing import Optional
 
 from aicsimageio import AICSImage
 from aicsimageio.readers import OmeTiffReader, TiffReader
-from prefect import task
 
 
-@task
 def load_image(location: str, key: str, dim_order: Optional[str] = None) -> AICSImage:
     if location[:5] == "s3://":
         return load_image_from_s3(location[5:], key, dim_order)

@@ -3,12 +3,10 @@ import os
 from typing import Any
 
 import pandas as pd
-from prefect import task
 
 from io_collection.save.save_buffer import save_buffer_to_s3
 
 
-@task
 def save_dataframe(location: str, key: str, dataframe: pd.DataFrame, **kwargs: Any) -> None:
     if location[:5] == "s3://":
         save_dataframe_to_s3(location[5:], key, dataframe, **kwargs)
