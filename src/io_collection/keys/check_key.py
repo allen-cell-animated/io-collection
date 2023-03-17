@@ -1,10 +1,8 @@
 import os
 
 import boto3
-from prefect import task
 
 
-@task
 def check_key(location: str, key: str) -> bool:
     if location[:5] == "s3://":
         return check_key_on_s3(location[5:], key)

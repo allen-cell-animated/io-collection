@@ -4,10 +4,8 @@ import tempfile
 import boto3
 import numpy as np
 from aicsimageio.writers import OmeTiffWriter
-from prefect import task
 
 
-@task
 def save_image(location: str, key: str, image: np.ndarray) -> None:
     if location[:5] == "s3://":
         save_image_to_s3(location[5:], key, image)

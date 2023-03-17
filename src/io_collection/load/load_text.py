@@ -1,11 +1,8 @@
 import os
 
-from prefect import task
-
 from io_collection.load.load_buffer import load_buffer_from_s3
 
 
-@task
 def load_text(location: str, key: str) -> str:
     if location[:5] == "s3://":
         return load_text_from_s3(location[5:], key)

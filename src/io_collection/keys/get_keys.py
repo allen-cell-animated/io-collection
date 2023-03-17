@@ -2,10 +2,8 @@ import os
 from glob import glob
 
 import boto3
-from prefect import task
 
 
-@task
 def get_keys(location: str, prefix: str) -> list[str]:
     if location[:5] == "s3://":
         return get_keys_from_s3(location[5:], prefix)

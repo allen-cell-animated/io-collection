@@ -1,18 +1,15 @@
 import io
 import tarfile
 
-from prefect import task
-
 from io_collection.keys.check_key import check_key
 from io_collection.load.load_buffer import load_buffer
 from io_collection.load.load_tar import load_tar
 from io_collection.save.save_buffer import save_buffer
 
 
-@task
 def save_tar(location: str, key: str, contents: list[str]) -> None:
-    if check_key.fn(location, key):
-        existing_tar = load_tar.fn(location, key)
+    if check_key(location, key):
+        existing_tar = load_tar(location, key)
     else:
         existing_tar = None
 
@@ -23,9 +20,9 @@ def save_tar(location: str, key: str, contents: list[str]) -> None:
                     tar.addfile(member, existing_tar.extractfile(member.name))
 
             for content_key in contents:
-                content = load_buffer.fn(location, content_key)
+                content = load_buffer(location, content_key)
                 info = tarfile.TarInfo(content_key.split("/")[-1])
                 info.size = content.getbuffer().nbytes
                 tar.addfile(info, fileobj=content)
 
-        save_buffer.fn(location, key, buffer)
+        save_buffer(location, key, buffer)
