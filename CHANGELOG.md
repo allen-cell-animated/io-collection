@@ -10,7 +10,7 @@
 
 > Compare with [v0.6.0](https://github.com/allen-cell-animated/io-collection/compare/v0.6.0...v0.6.1)
 
-### Admin
+### Documentation
 
 - Fix type hints by [@jessicasyu](https://github.com/jessicasyu) in [#24](https://github.com/allen-cell-animated/io-collection/pull/24)
 
