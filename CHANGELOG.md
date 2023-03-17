@@ -2,7 +2,7 @@
 
 > Compare with [v0.6.1](https://github.com/allen-cell-animated/io-collection/compare/v0.6.1...v0.6.2)
 
-### Features
+### Admin
 
 - Upgrade prefect and update dependencies by [@jessicasyu](https://github.com/jessicasyu) in [#26](https://github.com/allen-cell-animated/io-collection/pull/26)
 
@@ -10,7 +10,7 @@
 
 > Compare with [v0.6.0](https://github.com/allen-cell-animated/io-collection/compare/v0.6.0...v0.6.1)
 
-### Bug fixes
+### Admin
 
 - Fix type hints by [@jessicasyu](https://github.com/jessicasyu) in [#24](https://github.com/allen-cell-animated/io-collection/pull/24)
 
@@ -25,8 +25,11 @@
 
 ### Bug fixes
 
-- Update import sorting for all tasks by [@jessicasyu](https://github.com/jessicasyu) in [#19](https://github.com/allen-cell-animated/io-collection/pull/19)
 - Update make key replace for underscores by [@jessicasyu](https://github.com/jessicasyu) in [#22](https://github.com/allen-cell-animated/io-collection/pull/22)
+
+### Admin
+
+- Update import sorting for all tasks by [@jessicasyu](https://github.com/jessicasyu) in [#19](https://github.com/allen-cell-animated/io-collection/pull/19)
 
 # [v0.5.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.5.0) - 2023-02-02
 
