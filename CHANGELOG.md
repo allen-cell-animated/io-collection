@@ -1,3 +1,15 @@
+# [v0.7.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.7.0) - 2023-03-18
+
+> Compare with [v0.6.2](https://github.com/allen-cell-animated/io-collection/compare/v0.6.2...v0.7.0)
+
+### Features
+
+- Move prefect task decorator to init by [@jessicasyu](https://github.com/jessicasyu) in [#28](https://github.com/allen-cell-animated/io-collection/pull/28)
+
+### Admin
+
+- Add changelog and update actions by [@jessicasyu](https://github.com/jessicasyu) in [#29](https://github.com/allen-cell-animated/io-collection/pull/29)
+
 # [v0.6.2](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.6.2) - 2023-02-22
 
 > Compare with [v0.6.1](https://github.com/allen-cell-animated/io-collection/compare/v0.6.1...v0.6.2)
