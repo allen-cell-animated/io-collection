@@ -1,3 +1,15 @@
+# [v0.7.1](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.7.1) - 2023-03-28
+
+> Compare with [v0.7.0](https://github.com/allen-cell-animated/io-collection/compare/v0.7.0...v0.7.1)
+
+### Bug fixes
+
+- Fix init import to exclude all double underscore files by [@jessicasyu](https://github.com/jessicasyu) in [#31](https://github.com/allen-cell-animated/io-collection/pull/31)
+
+### Admin
+
+- Update adding task decorator to init imports by [@jessicasyu](https://github.com/jessicasyu) in [#32](https://github.com/allen-cell-animated/io-collection/pull/32)
+
 # [v0.7.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.7.0) - 2023-03-18
 
 > Compare with [v0.6.2](https://github.com/allen-cell-animated/io-collection/compare/v0.6.2...v0.7.0)
