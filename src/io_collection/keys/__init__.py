@@ -1,14 +1,25 @@
 import importlib
-import os
 import sys
 
 from prefect import task
 
-for module_file in os.listdir(os.path.dirname(__file__)):
-    if "__" in module_file or not module_file.endswith(".py"):
-        continue
+from .change_key import change_key
+from .check_key import check_key
+from .copy_key import copy_key
+from .get_keys import get_keys
+from .make_key import make_key
+from .remove_key import remove_key
 
-    module_name = module_file.replace(".py", "")
+TASK_MODULES = [
+    change_key,
+    check_key,
+    copy_key,
+    get_keys,
+    make_key,
+    remove_key,
+]
 
-    module = importlib.import_module(f".{module_name}", package=__name__)
-    setattr(sys.modules[__name__], module_name, task(getattr(module, module_name)))
+for task_module in TASK_MODULES:
+    MODULE_NAME = task_module.__name__
+    module = importlib.import_module(f".{MODULE_NAME}", package=__name__)
+    setattr(sys.modules[__name__], MODULE_NAME, task(getattr(module, MODULE_NAME)))
