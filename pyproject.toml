@@ -58,11 +58,11 @@ namespace_packages = true
 
 [[tool.mypy.overrides]]
 module = [
-    "boto3",
-    "matplotlib",
-    "pandas",
-    "PIL",
-    "quilt3",
+    "boto3.*",
+    "matplotlib.*",
+    "pandas.*",
+    "PIL.*",
+    "quilt3.*",
 ]
 ignore_missing_imports = true
 
