@@ -1,3 +1,12 @@
+# [v0.7.2](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.7.2) - 2023-03-30
+
+> Compare with [v0.7.1](https://github.com/allen-cell-animated/io-collection/compare/v0.7.1...v0.7.2)
+
+### Admin
+
+- Add task decorator to init imports by [@jessicasyu](https://github.com/jessicasyu) in [#34](https://github.com/allen-cell-animated/io-collection/pull/34)
+- Update pyproject.toml and dependencies by [@jessicasyu](https://github.com/jessicasyu) in [#35](https://github.com/allen-cell-animated/io-collection/pull/35)
+
 # [v0.7.1](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.7.1) - 2023-03-28
 
 > Compare with [v0.7.0](https://github.com/allen-cell-animated/io-collection/compare/v0.7.0...v0.7.1)
