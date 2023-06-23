@@ -12,9 +12,10 @@ def get_keys(location: str, prefix: str) -> list[str]:
 
 
 def get_keys_from_fs(path: str, prefix: str) -> list[str]:
-    all_files = glob(f"{path}{prefix}/**/*", recursive=True)
+    glob_pattern = f"{path}/{prefix}/**/*".replace("//", "/")
+    all_files = glob(glob_pattern, recursive=True)
     regular_files = [file for file in all_files if not os.path.isdir(file)]
-    keys = [file.replace(path, "") for file in regular_files]
+    keys = [file.replace(path, "").strip("/") for file in regular_files]
     return keys
 
 
