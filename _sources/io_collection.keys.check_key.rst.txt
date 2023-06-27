@@ -1,7 +1,0 @@
-io\_collection.keys.check\_key module
-=====================================
-
-.. automodule:: io_collection.keys.check_key
-   :members:
-   :undoc-members:
-   :show-inheritance:

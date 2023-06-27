@@ -1,7 +1,0 @@
-io\_collection.keys.remove\_key module
-======================================
-
-.. automodule:: io_collection.keys.remove_key
-   :members:
-   :undoc-members:
-   :show-inheritance:

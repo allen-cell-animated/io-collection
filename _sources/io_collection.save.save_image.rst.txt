@@ -1,7 +1,0 @@
-io\_collection.save.save\_image module
-======================================
-
-.. automodule:: io_collection.save.save_image
-   :members:
-   :undoc-members:
-   :show-inheritance:

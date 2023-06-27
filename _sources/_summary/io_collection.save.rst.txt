@@ -1,0 +1,43 @@
+﻿io\_collection.save
+===================
+
+.. automodule:: io_collection.save
+    :members:
+    :undoc-members:
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+
+.. currentmodule:: io_collection
+
+.. autosummary::
+   :toctree:
+   :template: custom_module.rst
+   :recursive:
+
+   save.save_buffer
+   save.save_dataframe
+   save.save_figure
+   save.save_gif
+   save.save_image
+   save.save_json
+   save.save_pickle
+   save.save_tar
+   save.save_text
+

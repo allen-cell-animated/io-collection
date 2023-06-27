@@ -1,7 +1,0 @@
-io\_collection.load.load\_tar module
-====================================
-
-.. automodule:: io_collection.load.load_tar
-   :members:
-   :undoc-members:
-   :show-inheritance:

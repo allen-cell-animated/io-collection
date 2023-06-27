@@ -1,7 +1,0 @@
-io\_collection.keys.get\_keys module
-====================================
-
-.. automodule:: io_collection.keys.get_keys
-   :members:
-   :undoc-members:
-   :show-inheritance:

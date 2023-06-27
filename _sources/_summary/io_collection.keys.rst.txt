@@ -1,0 +1,40 @@
+﻿io\_collection.keys
+===================
+
+.. automodule:: io_collection.keys
+    :members:
+    :undoc-members:
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+
+.. currentmodule:: io_collection
+
+.. autosummary::
+   :toctree:
+   :template: custom_module.rst
+   :recursive:
+
+   keys.change_key
+   keys.check_key
+   keys.copy_key
+   keys.get_keys
+   keys.make_key
+   keys.remove_key
+

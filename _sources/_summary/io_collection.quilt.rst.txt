@@ -1,0 +1,36 @@
+﻿io\_collection.quilt
+====================
+
+.. automodule:: io_collection.quilt
+    :members:
+    :undoc-members:
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+
+.. currentmodule:: io_collection
+
+.. autosummary::
+   :toctree:
+   :template: custom_module.rst
+   :recursive:
+
+   quilt.load_quilt_package
+   quilt.save_quilt_item
+

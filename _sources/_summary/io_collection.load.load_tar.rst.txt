@@ -1,0 +1,22 @@
+load\_tar
+=========
+
+.. automodule:: io_collection.load.load_tar
+    :members:
+    :undoc-members:
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

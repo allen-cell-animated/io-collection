@@ -1,0 +1,22 @@
+load\_dataframe
+===============
+
+.. automodule:: io_collection.load.load_dataframe
+    :members:
+    :undoc-members:
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

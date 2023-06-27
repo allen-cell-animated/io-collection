@@ -1,0 +1,22 @@
+load\_text
+==========
+
+.. automodule:: io_collection.load.load_text
+    :members:
+    :undoc-members:
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

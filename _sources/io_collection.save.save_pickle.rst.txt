@@ -1,7 +1,0 @@
-io\_collection.save.save\_pickle module
-=======================================
-
-.. automodule:: io_collection.save.save_pickle
-   :members:
-   :undoc-members:
-   :show-inheritance:

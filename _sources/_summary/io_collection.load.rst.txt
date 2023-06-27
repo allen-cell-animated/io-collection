@@ -1,0 +1,40 @@
+﻿io\_collection.load
+===================
+
+.. automodule:: io_collection.load
+    :members:
+    :undoc-members:
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+
+.. currentmodule:: io_collection
+
+.. autosummary::
+   :toctree:
+   :template: custom_module.rst
+   :recursive:
+
+   load.load_buffer
+   load.load_dataframe
+   load.load_image
+   load.load_pickle
+   load.load_tar
+   load.load_text
+
