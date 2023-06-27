@@ -1,16 +1,31 @@
+|
+
+.. include:: ../README.md
+   :parser: myst_parser.sphinx_
+
+Module reference
+================
+
+.. autosummary::
+   :toctree: _summary
+   :caption: Module reference
+   :template: custom_summary.rst
+   :recursive:
+
+   io_collection.load
+   io_collection.save
+   io_collection.keys
+   io_collection.quilt
+
 .. toctree::
    :hidden:
-   :maxdepth: 1
-   :caption: Contents:
+   :caption: Development
 
-   Overview <self>
-   Package modules <modules>
+   Changelog <changelog>
 
-.. mdinclude:: ../README.md
+.. toctree::
+   :hidden:
+   :caption: Project links
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   GitHub <https://github.com/allen-cell-animated/io-collection>
+   PyPI <https://pypi.org/project/io-collection/>
