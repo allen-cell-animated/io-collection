@@ -1,3 +1,15 @@
+# [v0.8.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.8.0) - 2023-07-14
+
+> Compare with [v0.7.3](https://github.com/allen-cell-animated/io-collection/compare/v0.7.3...v0.8.0)
+
+### Features
+
+- Add option to save to png in save image task by [@jessicasyu](https://github.com/jessicasyu) in [#43](https://github.com/allen-cell-animated/io-collection/pull/43)
+
+### Bug fixes
+
+- Update save json format pattern for negatives and exponents by [@jessicasyu](https://github.com/jessicasyu) in [#44](https://github.com/allen-cell-animated/io-collection/pull/44)
+
 # [v0.7.3](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.7.3) - 2023-06-29
 
 > Compare with [v0.7.2](https://github.com/allen-cell-animated/io-collection/compare/v0.7.2...v0.7.3)
