@@ -34,6 +34,7 @@
    load.load_buffer
    load.load_dataframe
    load.load_image
+   load.load_json
    load.load_pickle
    load.load_tar
    load.load_text

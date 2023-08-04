@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="load_json" href="io_collection.load.load_json.html" /><link rel="prev" title="load_dataframe" href="io_collection.load.load_dataframe.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="load_pickle" href="io_collection.load.load_pickle.html" /><link rel="prev" title="load_image" href="io_collection.load.load_image.html" />
 
     <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
-        <title>load_image - I/O Collection 0.8.0</title>
+        <title>load_json - I/O Collection 0.8.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -160,8 +160,8 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="io_collection.load.html">io_collection.load</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of io_collection.load</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="io_collection.load.load_buffer.html">load_buffer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.load.load_dataframe.html">load_dataframe</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">load_image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="io_collection.load.load_json.html">load_json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io_collection.load.load_image.html">load_image</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">load_json</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.load.load_pickle.html">load_pickle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.load.load_tar.html">load_tar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.load.load_text.html">load_text</a></li>
@@ -236,55 +236,52 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-io_collection.load.load_image">
-<span id="load-image"></span><h1>load_image<a class="headerlink" href="#module-io_collection.load.load_image" title="Permalink to this heading">#</a></h1>
+          <section id="module-io_collection.load.load_json">
+<span id="load-json"></span><h1>load_json<a class="headerlink" href="#module-io_collection.load.load_json" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="io_collection.load.load_image.load_image">
-<span class="sig-name descname"><span class="pre">load_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/io_collection/load/load_image.html#load_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.load.load_image.load_image" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="io_collection.load.load_json.load_json">
+<span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/io_collection/load/load_json.html#load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.load.load_json.load_json" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>location</strong> (<em>str</em>) – </p></li>
 <li><p><strong>key</strong> (<em>str</em>) – </p></li>
-<li><p><strong>dim_order</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>AICSImage</em></p>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="io_collection.load.load_image.load_image_from_fs">
-<span class="sig-name descname"><span class="pre">load_image_from_fs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/io_collection/load/load_image.html#load_image_from_fs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.load.load_image.load_image_from_fs" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="io_collection.load.load_json.load_json_from_fs">
+<span class="sig-name descname"><span class="pre">load_json_from_fs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/io_collection/load/load_json.html#load_json_from_fs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.load.load_json.load_json_from_fs" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<em>str</em>) – </p></li>
 <li><p><strong>key</strong> (<em>str</em>) – </p></li>
-<li><p><strong>dim_order</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>AICSImage</em></p>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="io_collection.load.load_image.load_image_from_s3">
-<span class="sig-name descname"><span class="pre">load_image_from_s3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bucket</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/io_collection/load/load_image.html#load_image_from_s3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.load.load_image.load_image_from_s3" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="io_collection.load.load_json.load_json_from_s3">
+<span class="sig-name descname"><span class="pre">load_json_from_s3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bucket</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/io_collection/load/load_json.html#load_json_from_s3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.load.load_json.load_json_from_s3" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>bucket</strong> (<em>str</em>) – </p></li>
 <li><p><strong>key</strong> (<em>str</em>) – </p></li>
-<li><p><strong>dim_order</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>AICSImage</em></p>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -296,23 +293,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="io_collection.load.load_json.html">
+          <a class="next-page" href="io_collection.load.load_pickle.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">load_json</div>
+                <div class="title">load_pickle</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="io_collection.load.load_dataframe.html">
+          <a class="prev-page" href="io_collection.load.load_image.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">load_dataframe</div>
+                <div class="title">load_image</div>
                 
               </div>
             </a>
@@ -346,10 +343,10 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">load_image</a><ul>
-<li><a class="reference internal" href="#io_collection.load.load_image.load_image"><code class="docutils literal notranslate"><span class="pre">load_image()</span></code></a></li>
-<li><a class="reference internal" href="#io_collection.load.load_image.load_image_from_fs"><code class="docutils literal notranslate"><span class="pre">load_image_from_fs()</span></code></a></li>
-<li><a class="reference internal" href="#io_collection.load.load_image.load_image_from_s3"><code class="docutils literal notranslate"><span class="pre">load_image_from_s3()</span></code></a></li>
+<li><a class="reference internal" href="#">load_json</a><ul>
+<li><a class="reference internal" href="#io_collection.load.load_json.load_json"><code class="docutils literal notranslate"><span class="pre">load_json()</span></code></a></li>
+<li><a class="reference internal" href="#io_collection.load.load_json.load_json_from_fs"><code class="docutils literal notranslate"><span class="pre">load_json_from_fs()</span></code></a></li>
+<li><a class="reference internal" href="#io_collection.load.load_json.load_json_from_s3"><code class="docutils literal notranslate"><span class="pre">load_json_from_s3()</span></code></a></li>
 </ul>
 </li>
 </ul>
