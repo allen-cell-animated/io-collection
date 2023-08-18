@@ -2,8 +2,8 @@ save\_figure
 ============
 
 .. automodule:: io_collection.save.save_figure
-    :members:
-    :undoc-members:
+   :members:
+   :undoc-members:
 
    
    

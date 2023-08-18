@@ -2,8 +2,8 @@ change\_key
 ===========
 
 .. automodule:: io_collection.keys.change_key
-    :members:
-    :undoc-members:
+   :members:
+   :undoc-members:
 
    
    

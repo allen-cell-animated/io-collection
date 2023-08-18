@@ -2,8 +2,8 @@ save\_gif
 =========
 
 .. automodule:: io_collection.save.save_gif
-    :members:
-    :undoc-members:
+   :members:
+   :undoc-members:
 
    
    

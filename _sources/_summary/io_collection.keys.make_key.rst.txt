@@ -2,8 +2,8 @@ make\_key
 =========
 
 .. automodule:: io_collection.keys.make_key
-    :members:
-    :undoc-members:
+   :members:
+   :undoc-members:
 
    
    

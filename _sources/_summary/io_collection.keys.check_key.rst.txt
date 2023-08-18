@@ -2,8 +2,8 @@ check\_key
 ==========
 
 .. automodule:: io_collection.keys.check_key
-    :members:
-    :undoc-members:
+   :members:
+   :undoc-members:
 
    
    
