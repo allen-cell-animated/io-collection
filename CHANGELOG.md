@@ -1,3 +1,19 @@
+# [v0.9.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.9.0) - 2023-08-18
+
+> Compare with [v0.8.0](https://github.com/allen-cell-animated/io-collection/compare/v0.8.0...v0.9.0)
+
+### Features
+
+- Add load json task by [@jessicasyu](https://github.com/jessicasyu) in [#46](https://github.com/allen-cell-animated/io-collection/pull/46)
+
+### Documentation
+
+- Add module docstrings by [@jessicasyu](https://github.com/jessicasyu) in [#47](https://github.com/allen-cell-animated/io-collection/pull/47)
+
+### Admin
+
+- Update workflow permissions and badges by [@jessicasyu](https://github.com/jessicasyu) in [#48](https://github.com/allen-cell-animated/io-collection/pull/48)
+
 # [v0.8.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.8.0) - 2023-07-14
 
 > Compare with [v0.7.3](https://github.com/allen-cell-animated/io-collection/compare/v0.7.3...v0.8.0)
