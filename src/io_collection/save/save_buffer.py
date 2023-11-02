@@ -4,9 +4,9 @@ import os
 import boto3
 
 
-def save_buffer(location: str, key: str, buffer: io.BytesIO) -> None:
+def save_buffer(location: str, key: str, buffer: io.BytesIO, content_type: str) -> None:
     if location[:5] == "s3://":
-        save_buffer_to_s3(location[5:], key, buffer)
+        save_buffer_to_s3(location[5:], key, buffer, content_type)
     else:
         save_buffer_to_fs(location, key, buffer)
 
@@ -18,9 +18,9 @@ def save_buffer_to_fs(path: str, key: str, buffer: io.BytesIO) -> None:
         file.write(buffer.getvalue())
 
 
-def save_buffer_to_s3(bucket: str, key: str, buffer: io.BytesIO) -> None:
+def save_buffer_to_s3(bucket: str, key: str, buffer: io.BytesIO, content_type: str) -> None:
     """
     Saves buffer to bucket with given key.
     """
     s3_client = boto3.client("s3")
-    s3_client.put_object(Bucket=bucket, Key=key, Body=buffer.getvalue())
+    s3_client.put_object(Bucket=bucket, Key=key, Body=buffer.getvalue(), ContentType=content_type)
