@@ -4,7 +4,9 @@ import os
 from io_collection.save.save_buffer import save_buffer_to_s3
 
 
-def save_text(location: str, key: str, text: str, content_type: str) -> None:
+def save_text(
+    location: str, key: str, text: str, content_type: str = "binary/octet-stream"
+) -> None:
     if location[:5] == "s3://":
         save_text_to_s3(location[5:], key, text, content_type)
     else:
