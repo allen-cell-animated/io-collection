@@ -1,5 +1,5 @@
-[![Build Status](https://allen-cell-animated.github.io/io-collection/_badges/build.svg)](https://github.com/allen-cell-animated/io-collection/actions?query=workflow%3Abuild)
-[![Lint Status](https://allen-cell-animated.github.io/io-collection/_badges/lint.svg)](https://github.com/allen-cell-animated/io-collection/actions?query=workflow%3Alint)
+[![Build status](https://allen-cell-animated.github.io/io-collection/_badges/build.svg)](https://github.com/allen-cell-animated/io-collection/actions?query=workflow%3Abuild)
+[![Lint status](https://allen-cell-animated.github.io/io-collection/_badges/lint.svg)](https://github.com/allen-cell-animated/io-collection/actions?query=workflow%3Alint)
 [![Documentation](https://allen-cell-animated.github.io/io-collection/_badges/documentation.svg)](https://allen-cell-animated.github.io/io-collection/)
 [![Coverage](https://allen-cell-animated.github.io/io-collection/_badges/coverage.svg)](https://allen-cell-animated.github.io/io-collection/_coverage/)
 [![Code style](https://allen-cell-animated.github.io/io-collection/_badges/style.svg)](https://github.com/psf/black)
