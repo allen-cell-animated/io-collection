@@ -40,4 +40,4 @@ def save_image_to_s3(bucket: str, key: str, image: np.ndarray) -> None:
     elif key.endswith(".png"):
         with io.BytesIO() as buffer:
             Image.fromarray(image).save(buffer, format="png")
-            save_buffer_to_s3(bucket, key, buffer)
+            save_buffer_to_s3(bucket, key, buffer, "image/png")

@@ -14,4 +14,4 @@ def save_json(location: str, key: str, obj: Union[dict, list], levels: int = 5) 
         pattern = re.compile(match_pattern)
         contents = pattern.sub(sub_pattern, contents)
 
-    save_text(location, key, contents)
+    save_text(location, key, contents, "application/json")

@@ -26,4 +26,4 @@ def save_dataframe_to_s3(bucket: str, key: str, dataframe: pd.DataFrame, **kwarg
     """
     with io.BytesIO() as buffer:
         dataframe.to_csv(buffer, **kwargs)
-        save_buffer_to_s3(bucket, key, buffer)
+        save_buffer_to_s3(bucket, key, buffer, "text/csv")

@@ -26,4 +26,4 @@ def save_figure_to_s3(bucket: str, key: str, figure: mpl.Figure, **kwargs: Any) 
     """
     with io.BytesIO() as buffer:
         figure.savefig(buffer, **kwargs)
-        save_buffer_to_s3(bucket, key, buffer)
+        save_buffer_to_s3(bucket, key, buffer, "image/png")
