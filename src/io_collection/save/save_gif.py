@@ -12,4 +12,4 @@ def save_gif(location: str, key: str, frame_keys: list[str]) -> None:
         frames[0].save(
             buffer, format="gif", save_all=True, append_images=frames[1:], duration=100, loop=0
         )
-        save_buffer(location, key, buffer)
+        save_buffer(location, key, buffer, "image/gif")
