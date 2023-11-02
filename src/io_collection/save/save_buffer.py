@@ -4,7 +4,9 @@ import os
 import boto3
 
 
-def save_buffer(location: str, key: str, buffer: io.BytesIO, content_type: str) -> None:
+def save_buffer(
+    location: str, key: str, buffer: io.BytesIO, content_type: str = "binary/octet-stream"
+) -> None:
     if location[:5] == "s3://":
         save_buffer_to_s3(location[5:], key, buffer, content_type)
     else:
