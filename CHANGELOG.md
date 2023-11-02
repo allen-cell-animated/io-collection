@@ -1,3 +1,11 @@
+# [v0.10.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.10.0) - 2023-11-02
+
+> Compare with [v0.9.0](https://github.com/allen-cell-animated/io-collection/compare/v0.9.0...v0.10.0)
+
+### Features
+
+- Add content type option to save tasks by [@jessicasyu](https://github.com/jessicasyu) in [#50](https://github.com/allen-cell-animated/io-collection/pull/50)
+
 # [v0.9.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.9.0) - 2023-08-18
 
 > Compare with [v0.8.0](https://github.com/allen-cell-animated/io-collection/compare/v0.8.0...v0.9.0)
