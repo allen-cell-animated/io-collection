@@ -1,3 +1,12 @@
+# [v0.10.1](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.10.1) - 2024-05-07
+
+> Compare with [v0.10.0](https://github.com/allen-cell-animated/io-collection/compare/v0.10.0...v0.10.1)
+
+### Admin
+
+- Migrate from aicsimageio to bioio by [@jessicasyu](https://github.com/jessicasyu) in [#52](https://github.com/allen-cell-animated/io-collection/pull/52)
+- Fix release workflow by [@jessicasyu](https://github.com/jessicasyu) in [#53](https://github.com/allen-cell-animated/io-collection/pull/53)
+
 # [v0.10.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.10.0) - 2023-11-02
 
 > Compare with [v0.9.0](https://github.com/allen-cell-animated/io-collection/compare/v0.9.0...v0.10.0)
