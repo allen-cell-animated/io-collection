@@ -1,16 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" data-content_root="./">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="io_collection.load" href="_summary/io_collection.load.html" />
 
-    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
+    <!-- Generated with Sphinx 7.3.7 and Furo 2023.09.10 -->
         <title>I/O Collection 0.10.0</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
     
     
 
@@ -249,7 +249,7 @@
 <p>Collection of tasks for I/O.
 Designed to be used both in <a class="reference external" href="https://docs.prefect.io/latest/">Prefect</a> workflows and as modular, useful pieces of code.</p>
 <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h1>
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
 <p>The collection can be installed using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>io-collection
 </pre></div>
@@ -261,9 +261,9 @@ To install into your Poetry project, use:</p>
 </div>
 </section>
 <section id="usage">
-<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h1>
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h1>
 <section id="prefect-workflows">
-<h2>Prefect workflows<a class="headerlink" href="#prefect-workflows" title="Permalink to this heading">#</a></h2>
+<h2>Prefect workflows<a class="headerlink" href="#prefect-workflows" title="Link to this heading">¶</a></h2>
 <p>All tasks in this collection are wrapped in a Prefect <code class="docutils literal notranslate"><span class="pre">&#64;task</span></code> decorator, and can be used directly in a Prefect <code class="docutils literal notranslate"><span class="pre">&#64;flow</span></code>.
 Running tasks within a <a class="reference external" href="https://docs.prefect.io/latest/">Prefect</a> flow enables you to take advantage of features such as automatically retrying failed tasks, monitoring workflow states, running tasks concurrently, deploying and scheduling flows, and more.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">prefect</span> <span class="kn">import</span> <span class="n">flow</span>
@@ -280,7 +280,7 @@ Running tasks within a <a class="reference external" href="https://docs.prefect.
 <p>See <a class="reference external" href="https://github.com/allen-cell-animated/cell-abm-pipeline">cell-abm-pipeline</a> for examples of using tasks from different collections to build a pipeline for simulating and analyzing agent-based model data.</p>
 </section>
 <section id="individual-tasks">
-<h2>Individual tasks<a class="headerlink" href="#individual-tasks" title="Permalink to this heading">#</a></h2>
+<h2>Individual tasks<a class="headerlink" href="#individual-tasks" title="Link to this heading">¶</a></h2>
 <p>Not all use cases require a full workflow.
 Tasks in this collection can be used without the Prefect <code class="docutils literal notranslate"><span class="pre">&#64;task</span></code> decorator by simply importing directly from the module:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io_collection.</span><span class="o">&lt;</span><span class="n">module_name</span><span class="o">&gt;.&lt;</span><span class="n">task_name</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">task_name</span><span class="o">&gt;</span>
@@ -305,7 +305,7 @@ Tasks in this collection can be used without the Prefect <code class="docutils l
 </section>
 </section>
 <section id="module-reference">
-<h1>Module reference<a class="headerlink" href="#module-reference" title="Permalink to this heading">#</a></h1>
+<h1>Module reference<a class="headerlink" href="#module-reference" title="Link to this heading">¶</a></h1>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -349,7 +349,7 @@ Tasks in this collection can be used without the Prefect <code class="docutils l
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2023, Jessica S. Yu, Allen Institute for Cell Science
+                Copyright &#169; 2024, Jessica S. Yu, Allen Institute for Cell Science
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -369,11 +369,11 @@ Tasks in this collection can be used without the Prefect <code class="docutils l
       
     </aside>
   </div>
-</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/scripts/furo.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+</div><script src="_static/documentation_options.js?v=82662543"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     </body>
 </html>
