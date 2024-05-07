@@ -4,7 +4,7 @@ import tempfile
 
 import boto3
 import numpy as np
-from aicsimageio.writers import OmeTiffWriter
+from bioio.writers import OmeTiffWriter
 from PIL import Image
 
 from io_collection.save.save_buffer import save_buffer_to_s3
