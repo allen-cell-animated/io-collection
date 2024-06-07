@@ -39,7 +39,7 @@ jobs:
 
     - name: Install library
       run: |
-        poetry install --no-interaction
+        poetry install --no-interaction --all-extras
 
     - name: Generate documentation with Sphinx
       run: |
