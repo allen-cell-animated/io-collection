@@ -17,11 +17,23 @@ The collection can be installed using:
 pip install io-collection
 ```
 
+Note that loading and saving images requires additional dependencies. Install these using:
+
+```bash
+pip install 'io-collection[images]'
+```
+
 We recommend using [Poetry](https://python-poetry.org/) to manage and install dependencies.
 To install into your Poetry project, use:
 
 ```bash
 poetry add io-collection
+```
+
+To include additional dependencies for loading and saving images:
+
+```bash
+poetry add 'io-collection[images]'
 ```
 
 # Usage
