@@ -22,6 +22,7 @@ save_text = task(save_text)
 
 try:
     from .save_image import save_image
+
     save_image = task(save_image)
 except ImportError:
     pass

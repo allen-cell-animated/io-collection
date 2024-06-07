@@ -18,6 +18,7 @@ load_text = task(load_text)
 
 try:
     from .load_image import load_image
+
     load_image = task(load_image)
 except ImportError:
     pass
