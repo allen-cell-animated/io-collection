@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2023.09.10 -->
-        <title>io_collection.save.save_figure - I/O Collection 0.10.2</title>
+        <title>io_collection.save.save_image - I/O Collection 0.10.2</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -234,44 +234,58 @@
           </label>
         </div>
         <article role="main">
-          <h1>Source code for io_collection.save.save_figure</h1><div class="highlight"><pre>
+          <h1>Source code for io_collection.save.save_image</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.figure</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">bioio.writers</span> <span class="kn">import</span> <span class="n">OmeTiffWriter</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 
 <span class="kn">from</span> <span class="nn">io_collection.save.save_buffer</span> <span class="kn">import</span> <span class="n">save_buffer_to_s3</span>
 
 
-<div class="viewcode-block" id="save_figure">
-<a class="viewcode-back" href="../../../_summary/io_collection.save.save_figure.html#io_collection.save.save_figure.save_figure">[docs]</a>
-<span class="k">def</span> <span class="nf">save_figure</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">figure</span><span class="p">:</span> <span class="n">mpl</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="save_image">
+<a class="viewcode-back" href="../../../_summary/io_collection.save.save_image.html#io_collection.save.save_image.save_image">[docs]</a>
+<span class="k">def</span> <span class="nf">save_image</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">location</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;s3://&quot;</span><span class="p">:</span>
-        <span class="n">save_figure_to_s3</span><span class="p">(</span><span class="n">location</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="n">key</span><span class="p">,</span> <span class="n">figure</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">save_image_to_s3</span><span class="p">(</span><span class="n">location</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="n">key</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">save_figure_to_fs</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">figure</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="n">save_image_to_fs</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span></div>
 
 
 
-<div class="viewcode-block" id="save_figure_to_fs">
-<a class="viewcode-back" href="../../../_summary/io_collection.save.save_figure.html#io_collection.save.save_figure.save_figure_to_fs">[docs]</a>
-<span class="k">def</span> <span class="nf">save_figure_to_fs</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">figure</span><span class="p">:</span> <span class="n">mpl</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="save_image_to_fs">
+<a class="viewcode-back" href="../../../_summary/io_collection.save.save_image.html#io_collection.save.save_image.save_image_to_fs">[docs]</a>
+<span class="k">def</span> <span class="nf">save_image_to_fs</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">full_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.ome.tiff&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.ome.tif&quot;</span><span class="p">):</span>
+        <span class="n">OmeTiffWriter</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">full_path</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">):</span>
+        <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span></div>
 
 
 
-<div class="viewcode-block" id="save_figure_to_s3">
-<a class="viewcode-back" href="../../../_summary/io_collection.save.save_figure.html#io_collection.save.save_figure.save_figure_to_s3">[docs]</a>
-<span class="k">def</span> <span class="nf">save_figure_to_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">figure</span><span class="p">:</span> <span class="n">mpl</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Saves figure to bucket with given key.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span> <span class="k">as</span> <span class="n">buffer</span><span class="p">:</span>
-        <span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">save_buffer_to_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="s2">&quot;image/png&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="save_image_to_s3">
+<a class="viewcode-back" href="../../../_summary/io_collection.save.save_image.html#io_collection.save.save_image.save_image_to_s3">[docs]</a>
+<span class="k">def</span> <span class="nf">save_image_to_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">s3_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.ome.tiff&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.ome.tif&quot;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">temp_dir</span><span class="p">:</span>
+            <span class="n">temp_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">temp_dir</span><span class="p">,</span> <span class="s2">&quot;temp.ome.tiff&quot;</span><span class="p">)</span>
+            <span class="n">OmeTiffWriter</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">temp_path</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">temp_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fileobj</span><span class="p">:</span>
+                <span class="n">s3_client</span><span class="o">.</span><span class="n">upload_fileobj</span><span class="p">(</span><span class="n">fileobj</span><span class="p">,</span> <span class="n">bucket</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span> <span class="k">as</span> <span class="n">buffer</span><span class="p">:</span>
+            <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">)</span>
+            <span class="n">save_buffer_to_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="s2">&quot;image/png&quot;</span><span class="p">)</span></div>
 
 </pre></div>
         </article>
