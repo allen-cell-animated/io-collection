@@ -1,3 +1,12 @@
+# [v0.10.2](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.10.2) - 2024-06-07
+
+> Compare with [v0.10.1](https://github.com/allen-cell-animated/io-collection/compare/v0.10.1...v0.10.2)
+
+### Admin
+
+- Update workflow action versions and badges by [@jessicasyu](https://github.com/jessicasyu) in [#55](https://github.com/allen-cell-animated/io-collection/pull/55)
+- Separate image dependencies to optional group by [@jessicasyu](https://github.com/jessicasyu) in [#56](https://github.com/allen-cell-animated/io-collection/pull/56)
+
 # [v0.10.1](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.10.1) - 2024-05-07
 
 > Compare with [v0.10.0](https://github.com/allen-cell-animated/io-collection/compare/v0.10.0...v0.10.1)
