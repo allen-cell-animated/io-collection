@@ -36,11 +36,11 @@ jobs:
     - name: Install dependencies
       if: steps.cached-dependencies.outputs.cache-hit != 'true'
       run: |
-        poetry install --no-interaction --no-root
+        poetry install --no-interaction --no-root --all-extras
 
     - name: Install library
       run: |
-        poetry install --no-interaction --all-extras
+        poetry install --no-interaction
 
     - name: Test with pytest
       run: |
