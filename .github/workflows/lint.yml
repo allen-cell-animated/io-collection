@@ -36,7 +36,7 @@ jobs:
 
     - name: Install library
       run: |
-        poetry install --no-interaction
+        poetry install --no-interaction --all-extras
 
     - name: Lint with pylint
       run: |
