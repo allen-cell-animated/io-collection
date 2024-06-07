@@ -160,7 +160,6 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="_summary/io_collection.load.html">io_collection.load</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of io_collection.load</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.load.load_buffer.html">load_buffer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.load.load_dataframe.html">load_dataframe</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.load.load_image.html">load_image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.load.load_json.html">load_json</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.load.load_pickle.html">load_pickle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.load.load_tar.html">load_tar</a></li>
@@ -172,7 +171,6 @@
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.save.save_dataframe.html">save_dataframe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.save.save_figure.html">save_figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.save.save_gif.html">save_gif</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.save.save_image.html">save_image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.save.save_json.html">save_json</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.save.save_pickle.html">save_pickle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_summary/io_collection.save.save_tar.html">save_tar</a></li>
@@ -254,9 +252,17 @@ Designed to be used both in <a class="reference external" href="https://docs.pre
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>io-collection
 </pre></div>
 </div>
+<p>Note that loading and saving images requires additional dependencies. Install these using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;io-collection[images]&#39;</span>
+</pre></div>
+</div>
 <p>We recommend using <a class="reference external" href="https://python-poetry.org/">Poetry</a> to manage and install dependencies.
 To install into your Poetry project, use:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>add<span class="w"> </span>io-collection
+</pre></div>
+</div>
+<p>To include additional dependencies for loading and saving images:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;io-collection[images]&#39;</span>
 </pre></div>
 </div>
 </section>
