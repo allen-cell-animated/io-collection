@@ -3451,13 +3451,13 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "prefect"
-version = "2.18.3"
+version = "2.19.8"
 description = "Workflow orchestration and management."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "prefect-2.18.3-py3-none-any.whl", hash = "sha256:b77bae58f056e3e6633abdd9a465411c58a0f1d871201fcd4a35388446c1a4ea"},
-    {file = "prefect-2.18.3.tar.gz", hash = "sha256:b5c7ce517ca118a1490634c689fb53d19ba1c07ce524d79f9862b23ad1a0bfce"},
+    {file = "prefect-2.19.8-py3-none-any.whl", hash = "sha256:36830f9f700e616c9291fc7e6fe8b03df2652f83cfb985d3a5edf7b87ed1af4e"},
+    {file = "prefect-2.19.8.tar.gz", hash = "sha256:09a32292186a3335bd6282c58c4d361ab217fabac22164e1098dc1fcaca43139"},
 ]
 
 [package.dependencies]
@@ -3474,7 +3474,7 @@ coolname = ">=1.0.4,<3.0.0"
 croniter = ">=1.0.12,<3.0.0"
 cryptography = ">=36.0.1"
 dateparser = ">=1.1.1,<2.0.0"
-docker = ">=4.0,<7.0"
+docker = ">=4.0"
 fsspec = ">=2022.5.0"
 graphviz = ">=0.20.1"
 griffe = ">=0.20.0"
@@ -3513,11 +3513,28 @@ toml = ">=0.10.0"
 typer = ">=0.12.0,<0.12.2 || >0.12.2,<0.13.0"
 typing-extensions = ">=4.5.0,<5.0.0"
 ujson = ">=5.8.0,<6.0.0"
-uvicorn = ">=0.14.0,<0.29.0"
+uvicorn = ">=0.14.0,<0.29.0 || >0.29.0"
 websockets = ">=10.4,<13.0"
 
 [package.extras]
-dev = ["cairosvg", "codespell (>=2.2.6)", "ddtrace", "ipython", "ipython (==8.12.*)", "jinja2", "mike", "mkdocs", "mkdocs-gen-files", "mkdocs-material", "mkdocstrings-python", "mock", "moto (>=5)", "mypy (>=1.9.0)", "numpy", "pillow", "pluggy (>=1.4.0)", "pre-commit", "pytest (>7,<8)", "pytest-asyncio (>=0.18.2,!=0.22.0,<0.23.0)", "pytest-benchmark", "pytest-cov", "pytest-env", "pytest-flakefinder", "pytest-timeout", "pytest-xdist (<3.4.0)", "pytkdocs (>=0.14.2)", "pyyaml", "requests", "respx", "ruff", "setuptools (!=60.9.0)", "types-PyYAML", "types-cachetools", "vermin", "virtualenv", "watchfiles"]
+aws = ["prefect-aws"]
+azure = ["prefect-azure"]
+bitbucket = ["prefect-bitbucket"]
+dask = ["prefect-dask"]
+databricks = ["prefect-databricks"]
+dbt = ["prefect-dbt"]
+dev = ["cairosvg", "codespell (>=2.2.6)", "ddtrace", "ipython", "ipython (==8.12.*)", "jinja2", "mike", "mkdocs", "mkdocs-gen-files", "mkdocs-material", "mkdocstrings-python", "mock", "moto (>=5)", "mypy (>=1.9.0)", "numpy", "pillow", "pluggy (>=1.4.0)", "pre-commit", "pytest (>7,<8)", "pytest-asyncio (>=0.18.2,!=0.22.0,<0.23.0)", "pytest-benchmark", "pytest-cov", "pytest-env", "pytest-flakefinder", "pytest-timeout", "pytest-xdist (<3.4.0)", "pytkdocs (>=0.14.2)", "pyyaml", "requests (<2.32.0)", "respx", "ruff", "setuptools (!=60.9.0)", "types-PyYAML", "types-cachetools", "vermin", "virtualenv", "watchfiles"]
+docker = ["prefect-docker"]
+email = ["prefect-email"]
+gcp = ["prefect-gcp"]
+github = ["prefect-github"]
+gitlab = ["prefect-gitlab"]
+kubernetes = ["prefect-kubernetes"]
+ray = ["prefect-ray"]
+shell = ["prefect-shell"]
+slack = ["prefect-slack"]
+snowflake = ["prefect-snowflake"]
+sqlalchemy = ["prefect-sqlalchemy"]
 
 [[package]]
 name = "psutil"
