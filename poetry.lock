@@ -425,13 +425,13 @@ lxml = ["lxml"]
 
 [[package]]
 name = "bioio"
-version = "1.0.1"
+version = "1.0.2"
 description = "Image reading, metadata management, and image writing for Microscopy images in Python"
 optional = true
 python-versions = ">=3.9"
 files = [
-    {file = "bioio-1.0.1-py3-none-any.whl", hash = "sha256:02dc149421d97673b22750455ca148c13d6a7f0964b565ada1d041d1c480c60b"},
-    {file = "bioio-1.0.1.tar.gz", hash = "sha256:0ba101788e4443440fa861294eefa9bd7e6b7e8078b6d5da3f56cae07618cf82"},
+    {file = "bioio-1.0.2-py3-none-any.whl", hash = "sha256:d9c298a7777604b22107b3c88ce24ec9948da1bbc03b087333dc15213f3a57ff"},
+    {file = "bioio-1.0.2.tar.gz", hash = "sha256:9baf7b30425e804deba6e8021978a695011dc4f5e37b87859cd9d9793739740d"},
 ]
 
 [package.dependencies]
