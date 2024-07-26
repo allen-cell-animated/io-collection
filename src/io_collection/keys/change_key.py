@@ -7,8 +7,8 @@ def change_key(location: str, old_key: str, new_key: str) -> None:
     """
     Change object key at specified location.
 
-    Method will save to an S3 bucket if the location begins with the **s3://**
-    protocol, otherwise it assumes the location is a local path.
+    Method will change the object in an S3 bucket if the location begins with
+    the **s3://** protocol, otherwise it assumes the location is a local path.
 
     Parameters
     ----------
