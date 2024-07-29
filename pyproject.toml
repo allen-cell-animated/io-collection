@@ -68,6 +68,7 @@ namespace_packages = true
 [[tool.mypy.overrides]]
 module = [
     "boto3.*",
+    "botocore.*",
     "matplotlib.*",
     "pandas.*",
     "PIL.*",
