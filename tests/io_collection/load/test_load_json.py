@@ -12,18 +12,16 @@ from io_collection.load.load_json import load_json
 
 class TestLoadJson(unittest.TestCase):
     def setUp(self) -> None:
-        size = 100
-
         self.json_dict = {
-            "ints": [random.randint(0, size) for _ in range(size)],
-            "floats": [random.random() for _ in range(size)],
-            "strings": [random.choice(string.ascii_letters) for _ in range(size)],
+            "ints": [random.randint(0, 100) for _ in range(100)],
+            "floats": [random.random() for _ in range(100)],
+            "strings": [random.choice(string.ascii_letters) for _ in range(100)],
         }
 
         self.json_list = [
-            [random.randint(0, size) for _ in range(size)],
-            [random.random() for _ in range(size)],
-            [random.choice(string.ascii_letters) for _ in range(size)],
+            [random.randint(0, 100) for _ in range(100)],
+            [random.random() for _ in range(100)],
+            [random.choice(string.ascii_letters) for _ in range(100)],
         ]
 
     def test_load_json_invalid_extension_throws_exception(self):

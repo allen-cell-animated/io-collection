@@ -13,13 +13,11 @@ from io_collection.load.load_dataframe import load_dataframe
 
 class TestLoadDataFrame(unittest.TestCase):
     def setUp(self) -> None:
-        size = 100
-
         self.dataframe = pd.DataFrame(
             {
-                "ints": [random.randint(0, size) for _ in range(size)],
-                "floats": [random.random() for _ in range(size)],
-                "strings": [random.choice(string.ascii_letters) for _ in range(size)],
+                "ints": [random.randint(0, 100) for _ in range(100)],
+                "floats": [random.random() for _ in range(100)],
+                "strings": [random.choice(string.ascii_letters) for _ in range(100)],
             }
         )
 
