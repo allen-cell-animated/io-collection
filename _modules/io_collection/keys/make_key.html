@@ -242,6 +242,21 @@
 <div class="viewcode-block" id="make_key">
 <a class="viewcode-back" href="../../../_summary/io_collection.keys.make_key.html#io_collection.keys.make_key.make_key">[docs]</a>
 <span class="k">def</span> <span class="nf">make_key</span><span class="p">(</span><span class="o">*</span><span class="n">subkeys</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Combines given subkeys into a single key.</span>
+
+<span class="sd">    If any subkeys include **{{timestamp}}**, it will be replaced with the</span>
+<span class="sd">    current date formatted as **YYYY-MM-DD**. Any instances of double</span>
+<span class="sd">    underscores (`__`) are replaced with a single underscore (`_`). Any</span>
+<span class="sd">    instances of underscore followed by a period (`_.`) are replaced with a</span>
+<span class="sd">    period (`.`).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        The key.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="o">*</span><span class="n">subkeys</span><span class="p">)</span>
 
     <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>

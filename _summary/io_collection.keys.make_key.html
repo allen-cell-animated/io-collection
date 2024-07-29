@@ -241,7 +241,18 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="io_collection.keys.make_key.make_key">
 <span class="sig-name descname"><span class="pre">make_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subkeys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/io_collection/keys/make_key.html#make_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.keys.make_key.make_key" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Combines given subkeys into a single key.</p>
+<p>If any subkeys include <strong>{{timestamp}}</strong>, it will be replaced with the
+current date formatted as <strong>YYYY-MM-DD</strong>. Any instances of double
+underscores (<cite>__</cite>) are replaced with a single underscore (<cite>_</cite>). Any
+instances of underscore followed by a period (<cite>_.</cite>) are replaced with a
+period (<cite>.</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The key.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

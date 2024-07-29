@@ -243,16 +243,50 @@
 <div class="viewcode-block" id="check_key">
 <a class="viewcode-back" href="../../../_summary/io_collection.keys.check_key.html#io_collection.keys.check_key.check_key">[docs]</a>
 <span class="k">def</span> <span class="nf">check_key</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if object key exists at specified location.</span>
+
+<span class="sd">    Method will check in the S3 bucket if the location begins with the **s3://**</span>
+<span class="sd">    protocol, otherwise it assumes the location is a local path.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    location</span>
+<span class="sd">        Object location (local path or S3 bucket).</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        True if the object exists in the location, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">if</span> <span class="n">location</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;s3://&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">check_key_on_s3</span><span class="p">(</span><span class="n">location</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="n">key</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">check_key_on_fs</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">check_key_on_fs</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="check_key_on_fs">
 <a class="viewcode-back" href="../../../_summary/io_collection.keys.check_key.html#io_collection.keys.check_key.check_key_on_fs">[docs]</a>
 <span class="k">def</span> <span class="nf">check_key_on_fs</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if object key exists on local file system.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path</span>
+<span class="sd">        Local object path.</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bool</span>
+<span class="sd">        True if the object exists on the local file system, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span></div>
 
@@ -261,6 +295,22 @@
 <div class="viewcode-block" id="check_key_on_s3">
 <a class="viewcode-back" href="../../../_summary/io_collection.keys.check_key.html#io_collection.keys.check_key.check_key_on_s3">[docs]</a>
 <span class="k">def</span> <span class="nf">check_key_on_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if object key exists in AWS S3 bucket.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path</span>
+<span class="sd">        AWS S3 bucket name.</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bool</span>
+<span class="sd">        True if the object exists in the AWS bucket, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">s3_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">s3_client</span><span class="o">.</span><span class="n">list_objects</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket</span><span class="p">,</span> <span class="n">Prefix</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
     <span class="k">return</span> <span class="s2">&quot;Contents&quot;</span> <span class="ow">in</span> <span class="n">result</span></div>
