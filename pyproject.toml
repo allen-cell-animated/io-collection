@@ -73,6 +73,7 @@ module = [
     "pandas.*",
     "PIL.*",
     "quilt3.*",
+    "ruamel.*",
     "bioio_tifffile.*"
 ]
 ignore_missing_imports = true
