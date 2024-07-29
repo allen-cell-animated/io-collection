@@ -13,27 +13,27 @@ class TestSaveBuffer(unittest.TestCase):
     def test_save_buffer_to_fs(self, fs):
         path = "test/path"
         key = "key.ext"
-        contents = "abc"
+        contents = io.BytesIO(b"abc")
 
-        save_buffer(path, key, io.BytesIO(contents.encode("utf-8")))
+        save_buffer(path, key, contents)
 
-        with open(f"{path}/{key}", "r") as f:
-            self.assertEqual(contents, f.read())
+        with open(f"{path}/{key}", "rb") as f:
+            self.assertEqual(contents.getvalue(), f.read())
 
     @mock_aws
     def test_save_buffer_to_s3(self):
         bucket = "test-bucket"
         key = "key.ext"
-        contents = "abc"
+        contents = io.BytesIO(b"abc")
         content_type = "content-type"
 
         s3_client = boto3.client("s3", region_name="us-east-1")
         s3_client.create_bucket(Bucket=bucket)
 
-        save_buffer(f"s3://{bucket}", key, io.BytesIO(contents.encode("utf-8")), content_type)
+        save_buffer(f"s3://{bucket}", key, contents, content_type)
 
         s3_object = s3_client.get_object(Bucket=bucket, Key=key)
-        self.assertEqual(contents, s3_object["Body"].read().decode("utf-8"))
+        self.assertEqual(contents.getvalue(), s3_object["Body"].read())
         self.assertEqual(content_type, s3_object["ContentType"])
 
 
