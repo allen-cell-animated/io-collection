@@ -241,7 +241,21 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="io_collection.load.load_pickle.load_pickle">
 <span class="sig-name descname"><span class="pre">load_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/io_collection/load/load_pickle.html#load_pickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.load.load_pickle.load_pickle" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Load key as pickled object from specified location.</p>
+<p>Method will load from the S3 bucket if the location begins with the
+<strong>s3://</strong> protocol, otherwise it assumes the location is a local path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>location</strong> – Object location (local path or S3 bucket).</p></li>
+<li><p><strong>key</strong> – Object key ending in <cite>.pkl</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded object.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 
