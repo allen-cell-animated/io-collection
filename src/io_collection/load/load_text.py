@@ -47,6 +47,7 @@ def load_text_from_fs(path: str, key: str) -> str:
     :
         Loaded text.
     """
+
     full_path = os.path.join(path, key)
     return open(full_path, "r", encoding="utf-8").read()
 
