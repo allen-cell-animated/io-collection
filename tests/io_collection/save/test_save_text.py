@@ -9,10 +9,6 @@ from io_collection.save.save_text import save_text
 
 
 class TestSaveText(unittest.TestCase):
-    def test_save_text_invalid_extension_throws_exception(self):
-        with self.assertRaises(ValueError):
-            save_text("", "key.ext", "")
-
     @patchfs
     def test_save_text_to_fs(self, fs):
         path = "test/path"

@@ -18,15 +18,12 @@ def save_text(
     location
         Object location (local path or S3 bucket).
     key
-        Object key ending in `.txt`.
+        Object key ending in valid text extension.
     text
         Text to save.
     content_type
         Content type (S3 only).
     """
-
-    if not key.endswith(".txt"):
-        raise ValueError(f"key [ {key} ] must have [ txt ] extension")
 
     if location[:5] == "s3://":
         save_text_to_s3(location[5:], key, text, content_type)
@@ -43,7 +40,7 @@ def save_text_to_fs(path: str, key: str, text: str) -> None:
     path
         Local object path.
     key
-        Object key ending in `.csv`.
+        Object key ending in valid text extension.
     text
         Text to save.
     """
@@ -63,7 +60,7 @@ def save_text_to_s3(bucket: str, key: str, text: str, content_type: str) -> None
     bucket
         AWS S3 bucket name.
     key
-        Object key ending in `.csv`.
+        Object key ending in valid text extension.
     text
         Text to save.
     content_type
