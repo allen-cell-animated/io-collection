@@ -37,7 +37,9 @@ def save_figure(location: str, key: str, figure: mpl.Figure, **kwargs: Any) -> N
     """
 
     if not key.endswith(EXTENSIONS):
-        raise ValueError(f"key [ {key} ] must have [ {' | '.join(EXTENSIONS)} ] extension")
+        raise ValueError(
+            f"key [ {key} ] must have [ {' | '.join([ext[1:] for ext in EXTENSIONS])} ] extension"
+        )
 
     if location[:5] == "s3://":
         save_figure_to_s3(location[5:], key, figure, **kwargs)
