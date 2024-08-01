@@ -3,7 +3,7 @@ import quilt3
 
 def load_quilt_package(quilt_package: str, quilt_registry: str) -> quilt3.Package:
     """
-    Load package into memory from registry.
+    Load Quilt package into memory from registry.
 
     Package is loaded without making a local copy of the manifest.
 
