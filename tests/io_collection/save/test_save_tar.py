@@ -27,7 +27,7 @@ class TestSaveTar(unittest.TestCase):
         with io.BytesIO() as buffer:
             with tarfile.open(fileobj=buffer, mode="w:xz") as tar:
                 for key in self.old_keys:
-                    info = tarfile.TarInfo(key.split("/")[-1])
+                    info = tarfile.TarInfo(key.rsplit("/", maxsplit=1)[-1])
                     info.size = self.contents[key].getbuffer().nbytes
                     tar.addfile(info, fileobj=self.contents[key])
 
@@ -47,11 +47,10 @@ class TestSaveTar(unittest.TestCase):
 
         save_tar(path, key, self.new_keys)
 
-        tar = tarfile.open(f"{path}/{key}", mode="r:xz")
-
-        for member in tar.getmembers():
-            contents = tar.extractfile(member).read()
-            self.assertEqual(self.contents[member.name].getvalue(), contents)
+        with tarfile.open(f"{path}/{key}", mode="r:xz") as tar:
+            for member in tar.getmembers():
+                contents = tar.extractfile(member).read()
+                self.assertEqual(self.contents[member.name].getvalue(), contents)
 
     @patchfs
     def test_save_tar_to_fs_existing_tar(self, fs):
@@ -64,11 +63,10 @@ class TestSaveTar(unittest.TestCase):
 
         save_tar(path, key, self.new_keys)
 
-        tar = tarfile.open(f"{path}/{key}", mode="r:xz")
-
-        for member in tar.getmembers():
-            contents = tar.extractfile(member).read()
-            self.assertEqual(self.contents[member.name].getvalue(), contents)
+        with tarfile.open(f"{path}/{key}", mode="r:xz") as tar:
+            for member in tar.getmembers():
+                contents = tar.extractfile(member).read()
+                self.assertEqual(self.contents[member.name].getvalue(), contents)
 
     @mock_aws
     def test_save_tar_to_s3_new_tar(self):
@@ -83,11 +81,10 @@ class TestSaveTar(unittest.TestCase):
         save_tar(f"s3://{bucket}", key, self.new_keys)
 
         s3_object = s3_client.get_object(Bucket=bucket, Key=key)
-        tar = tarfile.open(fileobj=io.BytesIO(s3_object["Body"].read()), mode="r:xz")
-
-        for member in tar.getmembers():
-            contents = tar.extractfile(member).read()
-            self.assertEqual(self.contents[member.name].getvalue(), contents)
+        with tarfile.open(fileobj=io.BytesIO(s3_object["Body"].read()), mode="r:xz") as tar:
+            for member in tar.getmembers():
+                contents = tar.extractfile(member).read()
+                self.assertEqual(self.contents[member.name].getvalue(), contents)
 
     @mock_aws
     def test_save_tar_to_s3_existing_tar(self):
@@ -103,11 +100,10 @@ class TestSaveTar(unittest.TestCase):
         save_tar(f"s3://{bucket}", key, self.new_keys)
 
         s3_object = s3_client.get_object(Bucket=bucket, Key=key)
-        tar = tarfile.open(fileobj=io.BytesIO(s3_object["Body"].read()), mode="r:xz")
-
-        for member in tar.getmembers():
-            contents = tar.extractfile(member).read()
-            self.assertEqual(self.contents[member.name].getvalue(), contents)
+        with tarfile.open(fileobj=io.BytesIO(s3_object["Body"].read()), mode="r:xz") as tar:
+            for member in tar.getmembers():
+                contents = tar.extractfile(member).read()
+                self.assertEqual(self.contents[member.name].getvalue(), contents)
 
 
 if __name__ == "__main__":
