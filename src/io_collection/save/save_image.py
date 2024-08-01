@@ -9,8 +9,31 @@ from PIL import Image
 
 from io_collection.save.save_buffer import save_buffer_to_s3
 
+EXTENSIONS = (".ome.tif", ".ome.tiff", ".png")
+
 
 def save_image(location: str, key: str, image: np.ndarray) -> None:
+    """
+    Save image array to key at specified location.
+
+    Method will save to the S3 bucket if the location begins with the **s3://**
+    protocol, otherwise it assumes the location is a local path.
+
+    Parameters
+    ----------
+    location
+        Object location (local path or S3 bucket).
+    key
+        Object key ending in `.ome.tiff` or `.png`.
+    image
+        Image array.
+    """
+
+    if not key.endswith(EXTENSIONS):
+        raise ValueError(
+            f"key [ {key} ] must have [ {' | '.join([ext[1:] for ext in EXTENSIONS])} ] extension"
+        )
+
     if location[:5] == "s3://":
         save_image_to_s3(location[5:], key, image)
     else:
@@ -18,16 +41,42 @@ def save_image(location: str, key: str, image: np.ndarray) -> None:
 
 
 def save_image_to_fs(path: str, key: str, image: np.ndarray) -> None:
+    """
+    Save image array to key on local file system.
+
+    Parameters
+    ----------
+    path
+        Local object path.
+    key
+        Object key ending in `.ome.tiff` or `.png`.
+    image
+        Image array.
+    """
+
     full_path = os.path.join(path, key)
     os.makedirs(os.path.split(full_path)[0], exist_ok=True)
 
     if key.endswith(".ome.tiff") or key.endswith(".ome.tif"):
         OmeTiffWriter.save(image, full_path)
     elif key.endswith(".png"):
-        Image.fromarray(image).save(full_path)
+        Image.fromarray(image).save(full_path)  # type: ignore
 
 
 def save_image_to_s3(bucket: str, key: str, image: np.ndarray) -> None:
+    """
+    Save image array to key in AWS S3 bucket.
+
+    Parameters
+    ----------
+    bucket
+        AWS S3 bucket name.
+    key
+        Object key ending in `.ome.tiff` or `.png`.
+    image
+        Image array.
+    """
+
     s3_client = boto3.client("s3")
 
     if key.endswith(".ome.tiff") or key.endswith(".ome.tif"):
@@ -39,5 +88,5 @@ def save_image_to_s3(bucket: str, key: str, image: np.ndarray) -> None:
                 s3_client.upload_fileobj(fileobj, bucket, key)
     elif key.endswith(".png"):
         with io.BytesIO() as buffer:
-            Image.fromarray(image).save(buffer, format="png")
+            Image.fromarray(image).save(buffer, format="png")  # type: ignore
             save_buffer_to_s3(bucket, key, buffer, "image/png")
