@@ -15,16 +15,13 @@ def load_text(location: str, key: str) -> str:
     location
         Object location (local path or S3 bucket).
     key
-        Object key ending in `.txt`.
+        Object key ending in valid text extension.
 
     Returns
     -------
     :
         Loaded text.
     """
-
-    if not key.endswith(".txt"):
-        raise ValueError(f"key [ {key} ] must have [ txt ] extension")
 
     if location[:5] == "s3://":
         return load_text_from_s3(location[5:], key)
@@ -40,7 +37,7 @@ def load_text_from_fs(path: str, key: str) -> str:
     path
         Local object path.
     key
-        Object key ending in `.txt`.
+        Object key ending in valid text extension.
 
     Returns
     -------
@@ -61,7 +58,7 @@ def load_text_from_s3(bucket: str, key: str) -> str:
     bucket
         AWS S3 bucket name.
     key
-        Object key ending in `.txt`.
+        Object key ending in valid text extension.
 
     Returns
     -------

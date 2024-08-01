@@ -31,7 +31,9 @@ def load_image(location: str, key: str, dim_order: Optional[str] = None) -> BioI
     """
 
     if not key.endswith(EXTENSIONS):
-        raise ValueError(f"key [ {key} ] must have [ {' | '.join(EXTENSIONS)} ] extension")
+        raise ValueError(
+            f"key [ {key} ] must have [ {' | '.join([ext[1:] for ext in EXTENSIONS])} ] extension"
+        )
 
     if location[:5] == "s3://":
         return load_image_from_s3(location[5:], key, dim_order)

@@ -13,10 +13,6 @@ class TestLoadText(unittest.TestCase):
     def setUp(self) -> None:
         self.text = "".join(random.choices(string.ascii_lowercase, k=100))
 
-    def test_load_text_invalid_extension_throws_exception(self):
-        with self.assertRaises(ValueError):
-            load_text("", "key.ext")
-
     @patchfs
     def test_load_text_from_fs(self, fs):
         path = "test/path"

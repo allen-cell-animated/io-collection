@@ -8,6 +8,30 @@ from io_collection.save.save_buffer import save_buffer
 
 
 def save_tar(location: str, key: str, contents: list[str]) -> None:
+    """
+    Save tar archive to key at specified location.
+
+    Method will save to the S3 bucket if the location begins with the **s3://**
+    protocol, otherwise it assumes the location is a local path.
+
+    If the archive already exists, all objects in the existing archive will be
+    copied into the new archive, along with the new contents.
+
+    Method currently only supports `xz` compression.
+
+    Parameters
+    ----------
+    location
+        Object location (local path or S3 bucket).
+    key
+        Object key ending in `.tar.xz`.
+    contents
+        List of content keys to include in the archive.
+    """
+
+    if not key.endswith(".tar.xz"):
+        raise ValueError(f"key [ {key} ] must have [ tar.xz ] extension")
+
     if check_key(location, key):
         existing_tar = load_tar(location, key)
     else:
