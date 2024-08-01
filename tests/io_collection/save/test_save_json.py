@@ -64,7 +64,7 @@ class TestSaveText(unittest.TestCase):
 
         save_json(path, key, self.json_dict, levels=4)
 
-        with open(f"{path}/{key}", "r") as f:
+        with open(f"{path}/{key}", "r", encoding="utf-8") as f:
             self.assertEqual(self.json_dict_string, f.read())
 
     @patchfs
@@ -74,7 +74,7 @@ class TestSaveText(unittest.TestCase):
 
         save_json(path, key, self.json_list, levels=4)
 
-        with open(f"{path}/{key}", "r") as f:
+        with open(f"{path}/{key}", "r", encoding="utf-8") as f:
             self.assertEqual(self.json_list_string, f.read())
 
     @mock_aws

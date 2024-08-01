@@ -31,7 +31,7 @@ class TestSaveFigure(unittest.TestCase):
 
         save_figure(path, key, figure, **self.kwargs)
 
-        with open(f"{path}/{key}", "r") as f:
+        with open(f"{path}/{key}", "r", encoding="utf-8") as f:
             self.assertEqual(self.kwargs_repr, f.read())
 
     @mock_aws
