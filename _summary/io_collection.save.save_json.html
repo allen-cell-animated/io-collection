@@ -241,7 +241,24 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="io_collection.save.save_json.save_json">
 <span class="sig-name descname"><span class="pre">save_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/io_collection/save/save_json.html#save_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.save.save_json.save_json" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Save dict or list as json to key at specified location.</p>
+<p>Method will save to the S3 bucket if the location begins with the <strong>s3://</strong>
+protocol, otherwise it assumes the location is a local path.</p>
+<p>The json is pretty printed with an indentation level of 2. For lists,
+default pretty printing places each item on a new line which can produce
+very long files. This method will attempt map lists up to the specified
+number of items onto a single line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>location</strong> – Object location (local path or S3 bucket).</p></li>
+<li><p><strong>key</strong> – Object key ending in <cite>.json</cite>.</p></li>
+<li><p><strong>obj</strong> – Dict or list to save.</p></li>
+<li><p><strong>levels</strong> – Maximum number of items for single line list.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

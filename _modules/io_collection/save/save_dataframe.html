@@ -247,6 +247,28 @@
 <div class="viewcode-block" id="save_dataframe">
 <a class="viewcode-back" href="../../../_summary/io_collection.save.save_dataframe.html#io_collection.save.save_dataframe.save_dataframe">[docs]</a>
 <span class="k">def</span> <span class="nf">save_dataframe</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save dataframe to key at specified location.</span>
+
+<span class="sd">    Method will save to the S3 bucket if the location begins with the **s3://**</span>
+<span class="sd">    protocol, otherwise it assumes the location is a local path.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    location</span>
+<span class="sd">        Object location (local path or S3 bucket).</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key ending in `.csv`.</span>
+<span class="sd">    dataframe</span>
+<span class="sd">        Dataframe to save.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Additional parameters for saving dataframe. The keyword arguments are</span>
+<span class="sd">        passed to `pandas.to_csv`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.csv&quot;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;key [ </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> ] must have [ csv ] extension&quot;</span><span class="p">)</span>
+
     <span class="k">if</span> <span class="n">location</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;s3://&quot;</span><span class="p">:</span>
         <span class="n">save_dataframe_to_s3</span><span class="p">(</span><span class="n">location</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="n">key</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -257,6 +279,22 @@
 <div class="viewcode-block" id="save_dataframe_to_fs">
 <a class="viewcode-back" href="../../../_summary/io_collection.save.save_dataframe.html#io_collection.save.save_dataframe.save_dataframe_to_fs">[docs]</a>
 <span class="k">def</span> <span class="nf">save_dataframe_to_fs</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save dataframe to key on local file system.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path</span>
+<span class="sd">        Local object path.</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key ending in `.csv`.</span>
+<span class="sd">    dataframe</span>
+<span class="sd">        Dataframe to save.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Additional parameters for saving dataframe. The keyword arguments are</span>
+<span class="sd">        passed to `pandas.to_csv`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">full_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
@@ -267,8 +305,21 @@
 <a class="viewcode-back" href="../../../_summary/io_collection.save.save_dataframe.html#io_collection.save.save_dataframe.save_dataframe_to_s3">[docs]</a>
 <span class="k">def</span> <span class="nf">save_dataframe_to_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Saves dataframe to bucket with given key.</span>
+<span class="sd">    Save dataframe to key in AWS S3 bucket.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bucket</span>
+<span class="sd">        AWS S3 bucket name.</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key ending in `.csv`.</span>
+<span class="sd">    dataframe</span>
+<span class="sd">        Dataframe to save.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Additional parameters for saving dataframe. The keyword arguments are</span>
+<span class="sd">        passed to `pandas.to_csv`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span> <span class="k">as</span> <span class="n">buffer</span><span class="p">:</span>
         <span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">save_buffer_to_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="s2">&quot;text/csv&quot;</span><span class="p">)</span></div>

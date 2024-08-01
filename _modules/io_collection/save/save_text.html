@@ -246,6 +246,24 @@
 <span class="k">def</span> <span class="nf">save_text</span><span class="p">(</span>
     <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;binary/octet-stream&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save text to key at specified location.</span>
+
+<span class="sd">    Method will save to the S3 bucket if the location begins with the **s3://**</span>
+<span class="sd">    protocol, otherwise it assumes the location is a local path.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    location</span>
+<span class="sd">        Object location (local path or S3 bucket).</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key ending in valid text extension.</span>
+<span class="sd">    text</span>
+<span class="sd">        Text to save.</span>
+<span class="sd">    content_type</span>
+<span class="sd">        Content type (S3 only).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">if</span> <span class="n">location</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;s3://&quot;</span><span class="p">:</span>
         <span class="n">save_text_to_s3</span><span class="p">(</span><span class="n">location</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="n">key</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">content_type</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -256,6 +274,19 @@
 <div class="viewcode-block" id="save_text_to_fs">
 <a class="viewcode-back" href="../../../_summary/io_collection.save.save_text.html#io_collection.save.save_text.save_text_to_fs">[docs]</a>
 <span class="k">def</span> <span class="nf">save_text_to_fs</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save text to key on local file system.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path</span>
+<span class="sd">        Local object path.</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key ending in valid text extension.</span>
+<span class="sd">    text</span>
+<span class="sd">        Text to save.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">full_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
@@ -266,6 +297,21 @@
 <div class="viewcode-block" id="save_text_to_s3">
 <a class="viewcode-back" href="../../../_summary/io_collection.save.save_text.html#io_collection.save.save_text.save_text_to_s3">[docs]</a>
 <span class="k">def</span> <span class="nf">save_text_to_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save text to key in AWS S3 bucket.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bucket</span>
+<span class="sd">        AWS S3 bucket name.</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key ending in valid text extension.</span>
+<span class="sd">    text</span>
+<span class="sd">        Text to save.</span>
+<span class="sd">    content_type</span>
+<span class="sd">        Content type (S3 only).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span> <span class="k">as</span> <span class="n">buffer</span><span class="p">:</span>
         <span class="n">buffer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
         <span class="n">save_buffer_to_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">content_type</span><span class="p">)</span></div>

@@ -241,7 +241,22 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="io_collection.save.save_tar.save_tar">
 <span class="sig-name descname"><span class="pre">save_tar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/io_collection/save/save_tar.html#save_tar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.save.save_tar.save_tar" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Save tar archive to key at specified location.</p>
+<p>Method will save to the S3 bucket if the location begins with the <strong>s3://</strong>
+protocol, otherwise it assumes the location is a local path.</p>
+<p>If the archive already exists, all objects in the existing archive will be
+copied into the new archive, along with the new contents.</p>
+<p>Method currently only supports <cite>xz</cite> compression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>location</strong> – Object location (local path or S3 bucket).</p></li>
+<li><p><strong>key</strong> – Object key ending in <cite>.tar.xz</cite>.</p></li>
+<li><p><strong>contents</strong> – List of content keys to include in the archive.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

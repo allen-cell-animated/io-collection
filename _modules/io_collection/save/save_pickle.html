@@ -245,6 +245,25 @@
 <div class="viewcode-block" id="save_pickle">
 <a class="viewcode-back" href="../../../_summary/io_collection.save.save_pickle.html#io_collection.save.save_pickle.save_pickle">[docs]</a>
 <span class="k">def</span> <span class="nf">save_pickle</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save pickled object to key at specified location.</span>
+
+<span class="sd">    Method will save to the S3 bucket if the location begins with the **s3://**</span>
+<span class="sd">    protocol, otherwise it assumes the location is a local path.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    location</span>
+<span class="sd">        Object location (local path or S3 bucket).</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key ending in `.pkl`.</span>
+<span class="sd">    obj</span>
+<span class="sd">        Object to save.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.pkl&quot;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;key [ </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> ] must have [ pkl ] extension&quot;</span><span class="p">)</span>
+
     <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span> <span class="k">as</span> <span class="n">buffer</span><span class="p">:</span>
         <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
         <span class="n">save_buffer</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span></div>
