@@ -4,7 +4,7 @@ from typing import Any
 
 import matplotlib.figure as mpl
 
-from io_collection.save.save_buffer import save_buffer_to_s3
+from io_collection.save.save_buffer import _save_buffer_to_s3
 
 EXTENSIONS = (".png", ".jpeg", ".jpg", ".svg")
 
@@ -42,12 +42,12 @@ def save_figure(location: str, key: str, figure: mpl.Figure, **kwargs: Any) -> N
         )
 
     if location[:5] == "s3://":
-        save_figure_to_s3(location[5:], key, figure, **kwargs)
+        _save_figure_to_s3(location[5:], key, figure, **kwargs)
     else:
-        save_figure_to_fs(location, key, figure, **kwargs)
+        _save_figure_to_fs(location, key, figure, **kwargs)
 
 
-def save_figure_to_fs(path: str, key: str, figure: mpl.Figure, **kwargs: Any) -> None:
+def _save_figure_to_fs(path: str, key: str, figure: mpl.Figure, **kwargs: Any) -> None:
     """
     Save matplotlib figure to key on local file system.
 
@@ -69,7 +69,7 @@ def save_figure_to_fs(path: str, key: str, figure: mpl.Figure, **kwargs: Any) ->
     figure.savefig(full_path, **kwargs)
 
 
-def save_figure_to_s3(bucket: str, key: str, figure: mpl.Figure, **kwargs: Any) -> None:
+def _save_figure_to_s3(bucket: str, key: str, figure: mpl.Figure, **kwargs: Any) -> None:
     """
     Save matplotlib figure to key in AWS S3 bucket.
 
@@ -89,4 +89,4 @@ def save_figure_to_s3(bucket: str, key: str, figure: mpl.Figure, **kwargs: Any) 
     with io.BytesIO() as buffer:
         figure.savefig(buffer, **kwargs)
         content_type = CONTENT_TYPES[key.split(".")[-1]]
-        save_buffer_to_s3(bucket, key, buffer, content_type)
+        _save_buffer_to_s3(bucket, key, buffer, content_type)
