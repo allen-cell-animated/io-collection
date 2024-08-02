@@ -3,7 +3,7 @@ from typing import Any
 
 import pandas as pd
 
-from io_collection.load.load_buffer import load_buffer_from_s3
+from io_collection.load.load_buffer import _load_buffer_from_s3
 
 
 def load_dataframe(location: str, key: str, **kwargs: Any) -> pd.DataFrame:
@@ -33,11 +33,11 @@ def load_dataframe(location: str, key: str, **kwargs: Any) -> pd.DataFrame:
         raise ValueError(f"key [ {key} ] must have [ csv ] extension")
 
     if location[:5] == "s3://":
-        return load_dataframe_from_s3(location[5:], key, **kwargs)
-    return load_dataframe_from_fs(location, key, **kwargs)
+        return _load_dataframe_from_s3(location[5:], key, **kwargs)
+    return _load_dataframe_from_fs(location, key, **kwargs)
 
 
-def load_dataframe_from_fs(path: str, key: str, **kwargs: Any) -> pd.DataFrame:
+def _load_dataframe_from_fs(path: str, key: str, **kwargs: Any) -> pd.DataFrame:
     """
     Load key as dataframe from local file system.
 
@@ -61,7 +61,7 @@ def load_dataframe_from_fs(path: str, key: str, **kwargs: Any) -> pd.DataFrame:
     return pd.read_csv(full_path, **kwargs)
 
 
-def load_dataframe_from_s3(bucket: str, key: str, **kwargs: Any) -> pd.DataFrame:
+def _load_dataframe_from_s3(bucket: str, key: str, **kwargs: Any) -> pd.DataFrame:
     """
     Load key as dataframe from AWS S3 bucket.
 
@@ -81,5 +81,5 @@ def load_dataframe_from_s3(bucket: str, key: str, **kwargs: Any) -> pd.DataFrame
         Loaded dataframe.
     """
 
-    buffer = load_buffer_from_s3(bucket, key)
+    buffer = _load_buffer_from_s3(bucket, key)
     return pd.read_csv(buffer, **kwargs)

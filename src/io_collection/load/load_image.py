@@ -36,11 +36,11 @@ def load_image(location: str, key: str, dim_order: Optional[str] = None) -> BioI
         )
 
     if location[:5] == "s3://":
-        return load_image_from_s3(location[5:], key, dim_order)
-    return load_image_from_fs(location, key, dim_order)
+        return _load_image_from_s3(location[5:], key, dim_order)
+    return _load_image_from_fs(location, key, dim_order)
 
 
-def load_image_from_fs(path: str, key: str, dim_order: Optional[str] = None) -> BioImage:
+def _load_image_from_fs(path: str, key: str, dim_order: Optional[str] = None) -> BioImage:
     """
     Load key as BioIO image from local file system.
 
@@ -65,7 +65,7 @@ def load_image_from_fs(path: str, key: str, dim_order: Optional[str] = None) -> 
     )
 
 
-def load_image_from_s3(bucket: str, key: str, dim_order: Optional[str] = None) -> BioImage:
+def _load_image_from_s3(bucket: str, key: str, dim_order: Optional[str] = None) -> BioImage:
     """
     Load key as BioIO image from AWS S3 bucket.
 

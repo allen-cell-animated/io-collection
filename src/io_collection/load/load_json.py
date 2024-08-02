@@ -2,7 +2,7 @@ import json
 import os
 from typing import Union
 
-from io_collection.load.load_buffer import load_buffer_from_s3
+from io_collection.load.load_buffer import _load_buffer_from_s3
 
 
 def load_json(location: str, key: str) -> Union[list, dict]:
@@ -29,11 +29,11 @@ def load_json(location: str, key: str) -> Union[list, dict]:
         raise ValueError(f"key [ {key} ] must have [ json ] extension")
 
     if location[:5] == "s3://":
-        return load_json_from_s3(location[5:], key)
-    return load_json_from_fs(location, key)
+        return _load_json_from_s3(location[5:], key)
+    return _load_json_from_fs(location, key)
 
 
-def load_json_from_fs(path: str, key: str) -> Union[list, dict]:
+def _load_json_from_fs(path: str, key: str) -> Union[list, dict]:
     """
     Load key as dict or list from local file system.
 
@@ -54,7 +54,7 @@ def load_json_from_fs(path: str, key: str) -> Union[list, dict]:
     return json.loads(open(full_path, "r", encoding="utf-8").read())
 
 
-def load_json_from_s3(bucket: str, key: str) -> Union[list, dict]:
+def _load_json_from_s3(bucket: str, key: str) -> Union[list, dict]:
     """
     Load key as dict or list from AWS S3 bucket.
 
@@ -71,5 +71,5 @@ def load_json_from_s3(bucket: str, key: str) -> Union[list, dict]:
         Loaded json.
     """
 
-    buffer = load_buffer_from_s3(bucket, key)
+    buffer = _load_buffer_from_s3(bucket, key)
     return json.loads(buffer.getvalue().decode("utf-8"))

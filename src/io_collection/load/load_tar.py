@@ -1,7 +1,7 @@
 import os
 import tarfile
 
-from io_collection.load.load_buffer import load_buffer_from_s3
+from io_collection.load.load_buffer import _load_buffer_from_s3
 
 
 def load_tar(location: str, key: str) -> tarfile.TarFile:
@@ -30,11 +30,11 @@ def load_tar(location: str, key: str) -> tarfile.TarFile:
         raise ValueError(f"key [ {key} ] must have [ tar.xz ] extension")
 
     if location[:5] == "s3://":
-        return load_tar_from_s3(location[5:], key)
-    return load_tar_from_fs(location, key)
+        return _load_tar_from_s3(location[5:], key)
+    return _load_tar_from_fs(location, key)
 
 
-def load_tar_from_fs(path: str, key: str) -> tarfile.TarFile:
+def _load_tar_from_fs(path: str, key: str) -> tarfile.TarFile:
     """
     Load key as tar archive from local file system.
 
@@ -55,7 +55,7 @@ def load_tar_from_fs(path: str, key: str) -> tarfile.TarFile:
     return tarfile.open(full_path, mode="r:xz")
 
 
-def load_tar_from_s3(bucket: str, key: str) -> tarfile.TarFile:
+def _load_tar_from_s3(bucket: str, key: str) -> tarfile.TarFile:
     """
     Load key as tar archive from AWS S3 bucket.
 
@@ -72,5 +72,5 @@ def load_tar_from_s3(bucket: str, key: str) -> tarfile.TarFile:
         Loaded tar archive.
     """
 
-    buffer = load_buffer_from_s3(bucket, key)
+    buffer = _load_buffer_from_s3(bucket, key)
     return tarfile.open(fileobj=buffer, mode="r:xz")
