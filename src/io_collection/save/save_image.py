@@ -7,7 +7,7 @@ import numpy as np
 from bioio.writers import OmeTiffWriter
 from PIL import Image
 
-from io_collection.save.save_buffer import save_buffer_to_s3
+from io_collection.save.save_buffer import _save_buffer_to_s3
 
 EXTENSIONS = (".ome.tif", ".ome.tiff", ".png")
 
@@ -35,12 +35,12 @@ def save_image(location: str, key: str, image: np.ndarray) -> None:
         )
 
     if location[:5] == "s3://":
-        save_image_to_s3(location[5:], key, image)
+        _save_image_to_s3(location[5:], key, image)
     else:
-        save_image_to_fs(location, key, image)
+        _save_image_to_fs(location, key, image)
 
 
-def save_image_to_fs(path: str, key: str, image: np.ndarray) -> None:
+def _save_image_to_fs(path: str, key: str, image: np.ndarray) -> None:
     """
     Save image array to key on local file system.
 
@@ -63,7 +63,7 @@ def save_image_to_fs(path: str, key: str, image: np.ndarray) -> None:
         Image.fromarray(image).save(full_path)  # type: ignore
 
 
-def save_image_to_s3(bucket: str, key: str, image: np.ndarray) -> None:
+def _save_image_to_s3(bucket: str, key: str, image: np.ndarray) -> None:
     """
     Save image array to key in AWS S3 bucket.
 
@@ -89,4 +89,4 @@ def save_image_to_s3(bucket: str, key: str, image: np.ndarray) -> None:
     elif key.endswith(".png"):
         with io.BytesIO() as buffer:
             Image.fromarray(image).save(buffer, format="png")  # type: ignore
-            save_buffer_to_s3(bucket, key, buffer, "image/png")
+            _save_buffer_to_s3(bucket, key, buffer, "image/png")

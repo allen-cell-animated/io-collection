@@ -4,7 +4,7 @@ from typing import Any
 
 import pandas as pd
 
-from io_collection.save.save_buffer import save_buffer_to_s3
+from io_collection.save.save_buffer import _save_buffer_to_s3
 
 
 def save_dataframe(location: str, key: str, dataframe: pd.DataFrame, **kwargs: Any) -> None:
@@ -31,12 +31,12 @@ def save_dataframe(location: str, key: str, dataframe: pd.DataFrame, **kwargs: A
         raise ValueError(f"key [ {key} ] must have [ csv ] extension")
 
     if location[:5] == "s3://":
-        save_dataframe_to_s3(location[5:], key, dataframe, **kwargs)
+        _save_dataframe_to_s3(location[5:], key, dataframe, **kwargs)
     else:
-        save_dataframe_to_fs(location, key, dataframe, **kwargs)
+        _save_dataframe_to_fs(location, key, dataframe, **kwargs)
 
 
-def save_dataframe_to_fs(path: str, key: str, dataframe: pd.DataFrame, **kwargs: Any) -> None:
+def _save_dataframe_to_fs(path: str, key: str, dataframe: pd.DataFrame, **kwargs: Any) -> None:
     """
     Save dataframe to key on local file system.
 
@@ -58,7 +58,7 @@ def save_dataframe_to_fs(path: str, key: str, dataframe: pd.DataFrame, **kwargs:
     dataframe.to_csv(full_path, **kwargs)
 
 
-def save_dataframe_to_s3(bucket: str, key: str, dataframe: pd.DataFrame, **kwargs: Any) -> None:
+def _save_dataframe_to_s3(bucket: str, key: str, dataframe: pd.DataFrame, **kwargs: Any) -> None:
     """
     Save dataframe to key in AWS S3 bucket.
 
@@ -77,4 +77,4 @@ def save_dataframe_to_s3(bucket: str, key: str, dataframe: pd.DataFrame, **kwarg
 
     with io.BytesIO() as buffer:
         dataframe.to_csv(buffer, **kwargs)
-        save_buffer_to_s3(bucket, key, buffer, "text/csv")
+        _save_buffer_to_s3(bucket, key, buffer, "text/csv")

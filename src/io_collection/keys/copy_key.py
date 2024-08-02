@@ -22,12 +22,12 @@ def copy_key(location: str, old_key: str, new_key: str) -> None:
     """
 
     if location[:5] == "s3://":
-        copy_key_on_s3(location[5:], old_key, new_key)
+        _copy_key_on_s3(location[5:], old_key, new_key)
     else:
-        copy_key_on_fs(location, old_key, new_key)
+        _copy_key_on_fs(location, old_key, new_key)
 
 
-def copy_key_on_fs(path: str, old_key: str, new_key: str) -> None:
+def _copy_key_on_fs(path: str, old_key: str, new_key: str) -> None:
     """
     Copy object key on local file system.
 
@@ -47,7 +47,7 @@ def copy_key_on_fs(path: str, old_key: str, new_key: str) -> None:
     shutil.copyfile(full_old_path, full_new_path)
 
 
-def copy_key_on_s3(bucket: str, old_key: str, new_key: str) -> None:
+def _copy_key_on_s3(bucket: str, old_key: str, new_key: str) -> None:
     """
     Copy object key in AWS S3 bucket.
 

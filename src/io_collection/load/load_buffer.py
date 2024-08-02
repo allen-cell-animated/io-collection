@@ -27,11 +27,11 @@ def load_buffer(location: str, key: str) -> io.BytesIO:
     """
 
     if location[:5] == "s3://":
-        return load_buffer_from_s3(location[5:], key)
-    return load_buffer_from_fs(location, key)
+        return _load_buffer_from_s3(location[5:], key)
+    return _load_buffer_from_fs(location, key)
 
 
-def load_buffer_from_fs(path: str, key: str) -> io.BytesIO:
+def _load_buffer_from_fs(path: str, key: str) -> io.BytesIO:
     """
     Load key into in-memory bytes buffer from local file system.
 
@@ -52,7 +52,7 @@ def load_buffer_from_fs(path: str, key: str) -> io.BytesIO:
     return io.BytesIO(open(full_path, "rb").read())
 
 
-def load_buffer_from_s3(bucket: str, key: str) -> io.BytesIO:
+def _load_buffer_from_s3(bucket: str, key: str) -> io.BytesIO:
     """
     Load key into in-memory bytes buffer from AWS S3 bucket.
 

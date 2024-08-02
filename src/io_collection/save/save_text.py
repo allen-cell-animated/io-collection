@@ -1,7 +1,7 @@
 import io
 import os
 
-from io_collection.save.save_buffer import save_buffer_to_s3
+from io_collection.save.save_buffer import _save_buffer_to_s3
 
 
 def save_text(
@@ -26,12 +26,12 @@ def save_text(
     """
 
     if location[:5] == "s3://":
-        save_text_to_s3(location[5:], key, text, content_type)
+        _save_text_to_s3(location[5:], key, text, content_type)
     else:
-        save_text_to_fs(location, key, text)
+        _save_text_to_fs(location, key, text)
 
 
-def save_text_to_fs(path: str, key: str, text: str) -> None:
+def _save_text_to_fs(path: str, key: str, text: str) -> None:
     """
     Save text to key on local file system.
 
@@ -51,7 +51,7 @@ def save_text_to_fs(path: str, key: str, text: str) -> None:
         file.write(text)
 
 
-def save_text_to_s3(bucket: str, key: str, text: str, content_type: str) -> None:
+def _save_text_to_s3(bucket: str, key: str, text: str, content_type: str) -> None:
     """
     Save text to key in AWS S3 bucket.
 
@@ -69,4 +69,4 @@ def save_text_to_s3(bucket: str, key: str, text: str, content_type: str) -> None
 
     with io.BytesIO() as buffer:
         buffer.write(text.encode("utf-8"))
-        save_buffer_to_s3(bucket, key, buffer, content_type)
+        _save_buffer_to_s3(bucket, key, buffer, content_type)
