@@ -1,3 +1,19 @@
+# [v1.0.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v1.0.0) - 2024-08-02
+
+> Compare with [v0.10.2](https://github.com/allen-cell-animated/io-collection/compare/v0.10.2...v1.0.0)
+
+### Tests
+
+- Add unit tests for io collection keys tasks by [@jessicasyu](https://github.com/jessicasyu) in [#59](https://github.com/allen-cell-animated/io-collection/pull/59)
+- Add unit tests for io collection load tasks by [@jessicasyu](https://github.com/jessicasyu) in [#60](https://github.com/allen-cell-animated/io-collection/pull/60)
+- Add unit tests for io collection save tasks by [@jessicasyu](https://github.com/jessicasyu) in [#61](https://github.com/allen-cell-animated/io-collection/pull/61)
+- Add unit tests for io collection save tasks by [@jessicasyu](https://github.com/jessicasyu) in [#62](https://github.com/allen-cell-animated/io-collection/pull/62)
+
+### Admin
+
+- Bump dependency versions by [@jessicasyu](https://github.com/jessicasyu) in [#58](https://github.com/allen-cell-animated/io-collection/pull/58)
+- Make helper load and save methods private by [@jessicasyu](https://github.com/jessicasyu) in [#63](https://github.com/allen-cell-animated/io-collection/pull/63)
+
 # [v0.10.2](https://github.com/allen-cell-animated/io-collection/releases/tag/v0.10.2) - 2024-06-07
 
 > Compare with [v0.10.1](https://github.com/allen-cell-animated/io-collection/compare/v0.10.1...v0.10.2)
