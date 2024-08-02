@@ -245,6 +245,21 @@
 <div class="viewcode-block" id="save_quilt_item">
 <a class="viewcode-back" href="../../../_summary/io_collection.quilt.save_quilt_item.html#io_collection.quilt.save_quilt_item.save_quilt_item">[docs]</a>
 <span class="k">def</span> <span class="nf">save_quilt_item</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">package</span><span class="p">:</span> <span class="n">quilt3</span><span class="o">.</span><span class="n">Package</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save item from Quilt package to key at specified location.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    location</span>
+<span class="sd">        Object location (local path or S3 bucket).</span>
+<span class="sd">    key</span>
+<span class="sd">        Object key.</span>
+<span class="sd">    package</span>
+<span class="sd">        Quilt package.</span>
+<span class="sd">    item</span>
+<span class="sd">        Name of the item in the package.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">contents</span> <span class="o">=</span> <span class="n">package</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">()</span>
     <span class="n">buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
     <span class="n">save_buffer</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span></div>
