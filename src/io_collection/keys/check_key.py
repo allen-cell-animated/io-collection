@@ -24,11 +24,11 @@ def check_key(location: str, key: str) -> bool:
     """
 
     if location[:5] == "s3://":
-        return check_key_on_s3(location[5:], key)
-    return check_key_on_fs(location, key)
+        return _check_key_on_s3(location[5:], key)
+    return _check_key_on_fs(location, key)
 
 
-def check_key_on_fs(path: str, key: str) -> bool:
+def _check_key_on_fs(path: str, key: str) -> bool:
     """
     Check if object key exists on local file system.
 
@@ -49,7 +49,7 @@ def check_key_on_fs(path: str, key: str) -> bool:
     return os.path.isfile(full_path)
 
 
-def check_key_on_s3(bucket: str, key: str) -> bool:
+def _check_key_on_s3(bucket: str, key: str) -> bool:
     """
     Check if object key exists in AWS S3 bucket.
 

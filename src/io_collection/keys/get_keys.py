@@ -25,11 +25,11 @@ def get_keys(location: str, prefix: str) -> list[str]:
     """
 
     if location[:5] == "s3://":
-        return get_keys_on_s3(location[5:], prefix)
-    return get_keys_on_fs(location, prefix)
+        return _get_keys_on_s3(location[5:], prefix)
+    return _get_keys_on_fs(location, prefix)
 
 
-def get_keys_on_fs(path: str, prefix: str) -> list[str]:
+def _get_keys_on_fs(path: str, prefix: str) -> list[str]:
     """
     Get list of objects on local file system with given prefix.
 
@@ -53,7 +53,7 @@ def get_keys_on_fs(path: str, prefix: str) -> list[str]:
     return keys
 
 
-def get_keys_on_s3(bucket: str, prefix: str) -> list[str]:
+def _get_keys_on_s3(bucket: str, prefix: str) -> list[str]:
     """
     Get list of objects in AWS S3 bucket with given prefix.
 

@@ -21,12 +21,12 @@ def change_key(location: str, old_key: str, new_key: str) -> None:
     """
 
     if location[:5] == "s3://":
-        change_key_on_s3(location[5:], old_key, new_key)
+        _change_key_on_s3(location[5:], old_key, new_key)
     else:
-        change_key_on_fs(location, old_key, new_key)
+        _change_key_on_fs(location, old_key, new_key)
 
 
-def change_key_on_fs(path: str, old_key: str, new_key: str) -> None:
+def _change_key_on_fs(path: str, old_key: str, new_key: str) -> None:
     """
     Change object key on local file system.
 
@@ -45,7 +45,7 @@ def change_key_on_fs(path: str, old_key: str, new_key: str) -> None:
     os.renames(full_old_path, full_new_path)
 
 
-def change_key_on_s3(bucket: str, old_key: str, new_key: str) -> None:
+def _change_key_on_s3(bucket: str, old_key: str, new_key: str) -> None:
     """
     Change object key in AWS S3 bucket.
 
