@@ -261,15 +261,13 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">location</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;s3://&quot;</span><span class="p">:</span>
-        <span class="n">copy_key_on_s3</span><span class="p">(</span><span class="n">location</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="n">old_key</span><span class="p">,</span> <span class="n">new_key</span><span class="p">)</span>
+        <span class="n">_copy_key_on_s3</span><span class="p">(</span><span class="n">location</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="n">old_key</span><span class="p">,</span> <span class="n">new_key</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">copy_key_on_fs</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">old_key</span><span class="p">,</span> <span class="n">new_key</span><span class="p">)</span></div>
+        <span class="n">_copy_key_on_fs</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">old_key</span><span class="p">,</span> <span class="n">new_key</span><span class="p">)</span></div>
 
 
 
-<div class="viewcode-block" id="copy_key_on_fs">
-<a class="viewcode-back" href="../../../_summary/io_collection.keys.copy_key.html#io_collection.keys.copy_key.copy_key_on_fs">[docs]</a>
-<span class="k">def</span> <span class="nf">copy_key_on_fs</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">old_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">_copy_key_on_fs</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">old_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Copy object key on local file system.</span>
 
@@ -286,13 +284,10 @@
     <span class="n">full_old_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">old_key</span><span class="p">)</span>
     <span class="n">full_new_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">new_key</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">full_new_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">full_old_path</span><span class="p">,</span> <span class="n">full_new_path</span><span class="p">)</span></div>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">full_old_path</span><span class="p">,</span> <span class="n">full_new_path</span><span class="p">)</span>
 
 
-
-<div class="viewcode-block" id="copy_key_on_s3">
-<a class="viewcode-back" href="../../../_summary/io_collection.keys.copy_key.html#io_collection.keys.copy_key.copy_key_on_s3">[docs]</a>
-<span class="k">def</span> <span class="nf">copy_key_on_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">old_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">_copy_key_on_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">old_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Copy object key in AWS S3 bucket.</span>
 
@@ -307,8 +302,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">s3_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">)</span>
-    <span class="n">s3_client</span><span class="o">.</span><span class="n">copy_object</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket</span><span class="p">,</span> <span class="n">CopySource</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bucket</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">old_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">Key</span><span class="o">=</span><span class="n">new_key</span><span class="p">)</span></div>
-
+    <span class="n">s3_client</span><span class="o">.</span><span class="n">copy_object</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket</span><span class="p">,</span> <span class="n">CopySource</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bucket</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">old_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">Key</span><span class="o">=</span><span class="n">new_key</span><span class="p">)</span>
 </pre></div>
         </article>
       </div>

@@ -256,37 +256,6 @@ protocol, otherwise it assumes the location is a local path.</p>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="io_collection.save.save_text.save_text_to_fs">
-<span class="sig-name descname"><span class="pre">save_text_to_fs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/io_collection/save/save_text.html#save_text_to_fs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.save.save_text.save_text_to_fs" title="Link to this definition">¶</a></dt>
-<dd><p>Save text to key on local file system.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> – Local object path.</p></li>
-<li><p><strong>key</strong> – Object key ending in valid text extension.</p></li>
-<li><p><strong>text</strong> – Text to save.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="io_collection.save.save_text.save_text_to_s3">
-<span class="sig-name descname"><span class="pre">save_text_to_s3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bucket</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/io_collection/save/save_text.html#save_text_to_s3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.save.save_text.save_text_to_s3" title="Link to this definition">¶</a></dt>
-<dd><p>Save text to key in AWS S3 bucket.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>bucket</strong> – AWS S3 bucket name.</p></li>
-<li><p><strong>key</strong> – Object key ending in valid text extension.</p></li>
-<li><p><strong>text</strong> – Text to save.</p></li>
-<li><p><strong>content_type</strong> – Content type (S3 only).</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
         </article>
@@ -346,8 +315,6 @@ protocol, otherwise it assumes the location is a local path.</p>
             <ul>
 <li><a class="reference internal" href="#">save_text</a><ul>
 <li><a class="reference internal" href="#io_collection.save.save_text.save_text"><code class="docutils literal notranslate"><span class="pre">save_text()</span></code></a></li>
-<li><a class="reference internal" href="#io_collection.save.save_text.save_text_to_fs"><code class="docutils literal notranslate"><span class="pre">save_text_to_fs()</span></code></a></li>
-<li><a class="reference internal" href="#io_collection.save.save_text.save_text_to_s3"><code class="docutils literal notranslate"><span class="pre">save_text_to_s3()</span></code></a></li>
 </ul>
 </li>
 </ul>
