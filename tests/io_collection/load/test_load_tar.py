@@ -21,7 +21,7 @@ class TestLoadTar(unittest.TestCase):
         with io.BytesIO() as buffer:
             with tarfile.open(fileobj=buffer, mode="w:xz") as tar:
                 for content_key, content in self.contents.items():
-                    info = tarfile.TarInfo(content_key.split("/")[-1])
+                    info = tarfile.TarInfo(content_key.rsplit("/", maxsplit=1)[-1])
                     info.size = content.getbuffer().nbytes
                     tar.addfile(info, fileobj=content)
 

@@ -1,4 +1,3 @@
-import io
 import unittest
 
 import boto3
@@ -17,7 +16,7 @@ class TestSaveText(unittest.TestCase):
 
         save_text(path, key, contents)
 
-        with open(f"{path}/{key}", "r") as f:
+        with open(f"{path}/{key}", "r", encoding="utf-8") as f:
             self.assertEqual(contents, f.read())
 
     @mock_aws
