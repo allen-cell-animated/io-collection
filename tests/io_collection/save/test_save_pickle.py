@@ -2,6 +2,7 @@ import pickle
 import random
 import string
 import unittest
+from pathlib import Path
 
 import boto3
 from moto import mock_aws
@@ -11,7 +12,7 @@ from io_collection.save.save_pickle import save_pickle
 
 
 class TestSavePickle(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.object = {
             "ints": [random.randint(0, 100) for _ in range(100)],
             "floats": [random.random() for _ in range(100)],
@@ -23,13 +24,13 @@ class TestSavePickle(unittest.TestCase):
             save_pickle("", "key.ext", "")
 
     @patchfs
-    def test_save_pickle_to_fs(self, fs):
+    def test_save_pickle_to_fs(self, fs):  # noqa: ARG002
         path = "test/path"
         key = "key.pkl"
 
         save_pickle(path, key, self.object)
 
-        with open(f"{path}/{key}", "rb") as f:
+        with Path(path, key).open("rb") as f:
             self.assertEqual(self.object, pickle.loads(f.read()))
 
     @mock_aws

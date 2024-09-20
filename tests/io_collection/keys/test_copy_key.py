@@ -1,5 +1,5 @@
-import os
 import unittest
+from pathlib import Path
 
 import boto3
 from moto import mock_aws
@@ -9,7 +9,7 @@ from io_collection.keys.copy_key import copy_key
 
 
 class TestCopyKey(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.old_key = "old/key.ext"
         self.new_key = "new/key.ext"
         self.contents = b"abc"
@@ -23,14 +23,14 @@ class TestCopyKey(unittest.TestCase):
         copy_key(path, self.old_key, self.new_key)
 
         # Check that old key still exists
-        self.assertTrue(os.path.exists(f"{path}/{self.old_key}"))
+        self.assertTrue(Path(path, self.old_key).exists())
 
         # Check that old key contents have not changed
         contents = fs.get_object(f"{path}/{self.old_key}").byte_contents
         self.assertEqual(self.contents, contents)
 
         # Check that new key exists
-        self.assertTrue(os.path.exists(f"{path}/{self.new_key}"))
+        self.assertTrue(Path(path, self.new_key).exists())
 
         # Check that new key has correct contents
         contents = fs.get_object(f"{path}/{self.new_key}").byte_contents

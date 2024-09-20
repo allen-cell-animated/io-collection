@@ -1,5 +1,4 @@
-import os
-from glob import glob
+from pathlib import Path
 
 import boto3
 
@@ -35,7 +34,7 @@ def _get_keys_on_fs(path: str, prefix: str) -> list[str]:
 
     Parameters
     ----------
-    location
+    path
         Local object path.
     prefix
         Object key prefix.
@@ -47,10 +46,9 @@ def _get_keys_on_fs(path: str, prefix: str) -> list[str]:
     """
 
     glob_pattern = f"{path}/{prefix}/**/*".replace("//", "/")
-    all_files = glob(glob_pattern, recursive=True)
-    regular_files = [file for file in all_files if not os.path.isdir(file)]
-    keys = [file.replace(path, "").strip("/") for file in regular_files]
-    return keys
+    all_files = Path().rglob(glob_pattern)
+    regular_files = [str(file) for file in all_files if not file.is_dir()]
+    return [file.replace(path, "").strip("/") for file in regular_files]
 
 
 def _get_keys_on_s3(bucket: str, prefix: str) -> list[str]:
@@ -59,7 +57,7 @@ def _get_keys_on_s3(bucket: str, prefix: str) -> list[str]:
 
     Parameters
     ----------
-    location
+    bucket
         AWS S3 bucket name.
     prefix
         Object key prefix.

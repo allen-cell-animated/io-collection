@@ -1,10 +1,10 @@
-import os
-from datetime import datetime
+import datetime
+from pathlib import Path
 
 
 def make_key(*subkeys: str) -> str:
     """
-    Combines given subkeys into a single key.
+    Combine given subkeys into a single key.
 
     If any subkeys include **{{timestamp}}**, it will be replaced with the
     current date formatted as **YYYY-MM-DD**. Any instances of double
@@ -18,12 +18,9 @@ def make_key(*subkeys: str) -> str:
         The key.
     """
 
-    key = os.path.join(*subkeys)
+    key = str(Path(subkeys[0], *subkeys[1:]))
 
-    timestamp = datetime.now().strftime("%Y-%m-%d")
+    timestamp = datetime.datetime.now(tz=datetime.timezone.utc).strftime("%Y-%m-%d")
     key = key.replace("{{timestamp}}", timestamp)
 
-    key = key.replace("__", "_")
-    key = key.replace("_.", ".")
-
-    return key
+    return key.replace("__", "_").replace("_.", ".")

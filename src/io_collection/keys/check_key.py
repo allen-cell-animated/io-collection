@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 import boto3
 
@@ -45,8 +45,8 @@ def _check_key_on_fs(path: str, key: str) -> bool:
         True if the object exists on the local file system, False otherwise.
     """
 
-    full_path = os.path.join(path, key)
-    return os.path.isfile(full_path)
+    full_path = Path(path) / key
+    return full_path.is_file()
 
 
 def _check_key_on_s3(bucket: str, key: str) -> bool:
@@ -55,7 +55,7 @@ def _check_key_on_s3(bucket: str, key: str) -> bool:
 
     Parameters
     ----------
-    path
+    bucket
         AWS S3 bucket name.
     key
         Object key.

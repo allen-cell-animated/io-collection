@@ -1,11 +1,12 @@
+from __future__ import annotations
+
 import json
-import os
-from typing import Union
+from pathlib import Path
 
 from io_collection.load.load_buffer import _load_buffer_from_s3
 
 
-def load_json(location: str, key: str) -> Union[list, dict]:
+def load_json(location: str, key: str) -> list | dict:
     """
     Load key as dict or list from specified location.
 
@@ -26,14 +27,15 @@ def load_json(location: str, key: str) -> Union[list, dict]:
     """
 
     if not key.endswith(".json"):
-        raise ValueError(f"key [ {key} ] must have [ json ] extension")
+        message = f"key [ {key} ] must have [ json ] extension"
+        raise ValueError(message)
 
     if location[:5] == "s3://":
         return _load_json_from_s3(location[5:], key)
     return _load_json_from_fs(location, key)
 
 
-def _load_json_from_fs(path: str, key: str) -> Union[list, dict]:
+def _load_json_from_fs(path: str, key: str) -> list | dict:
     """
     Load key as dict or list from local file system.
 
@@ -50,11 +52,12 @@ def _load_json_from_fs(path: str, key: str) -> Union[list, dict]:
         Loaded json.
     """
 
-    full_path = os.path.join(path, key)
-    return json.loads(open(full_path, "r", encoding="utf-8").read())
+    full_path = Path(path) / key
+    with full_path.open("r") as fileobj:
+        return json.loads(fileobj.read())
 
 
-def _load_json_from_s3(bucket: str, key: str) -> Union[list, dict]:
+def _load_json_from_s3(bucket: str, key: str) -> list | dict:
     """
     Load key as dict or list from AWS S3 bucket.
 

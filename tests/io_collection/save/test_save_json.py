@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 
 import boto3
 from moto import mock_aws
@@ -8,27 +9,25 @@ from io_collection.save.save_json import save_json
 
 
 class TestSaveText(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.json_dict = {
             "ints": [5, 10, 15, 20],
             "floats": [0.1, 0.2, 0.3, 0.4, 0.5],
             "strings": ["a", "B", "c"],
         }
 
-        self.json_dict_string = "\n".join(
-            [
-                "{",
-                '  "ints": [5,10,15,20],',
-                '  "floats": [',
-                "    0.1,",
-                "    0.2,",
-                "    0.3,",
-                "    0.4,",
-                "    0.5",
-                "  ],",
-                '  "strings": ["a","B","c"]',
-                "}",
-            ]
+        self.json_dict_string = (
+            "{\n"
+            '  "ints": [5,10,15,20],\n'
+            '  "floats": [\n'
+            "    0.1,\n"
+            "    0.2,\n"
+            "    0.3,\n"
+            "    0.4,\n"
+            "    0.5\n"
+            "  ],\n"
+            '  "strings": ["a","B","c"]\n'
+            "}"
         )
 
         self.json_list = [
@@ -37,20 +36,18 @@ class TestSaveText(unittest.TestCase):
             ["a", "B", "c"],
         ]
 
-        self.json_list_string = "\n".join(
-            [
-                "[",
-                "  [5,10,15,20],",
-                "  [",
-                "    0.1,",
-                "    0.2,",
-                "    0.3,",
-                "    0.4,",
-                "    0.5",
-                "  ],",
-                '  ["a","B","c"]',
-                "]",
-            ]
+        self.json_list_string = (
+            "[\n"
+            "  [5,10,15,20],\n"
+            "  [\n"
+            "    0.1,\n"
+            "    0.2,\n"
+            "    0.3,\n"
+            "    0.4,\n"
+            "    0.5\n"
+            "  ],\n"
+            '  ["a","B","c"]\n'
+            "]"
         )
 
     def test_save_json_invalid_extension_throws_exception(self):
@@ -58,23 +55,23 @@ class TestSaveText(unittest.TestCase):
             save_json("", "key.ext", "")
 
     @patchfs
-    def test_save_json_to_fs_from_dict(self, fs):
+    def test_save_json_to_fs_from_dict(self, fs):  # noqa: ARG002
         path = "test/path"
         key = "key.json"
 
         save_json(path, key, self.json_dict, levels=4)
 
-        with open(f"{path}/{key}", "r", encoding="utf-8") as f:
+        with Path(path, key).open("r") as f:
             self.assertEqual(self.json_dict_string, f.read())
 
     @patchfs
-    def test_save_json_to_fs_from_list(self, fs):
+    def test_save_json_to_fs_from_list(self, fs):  # noqa: ARG002
         path = "test/path"
         key = "key.json"
 
         save_json(path, key, self.json_list, levels=4)
 
-        with open(f"{path}/{key}", "r", encoding="utf-8") as f:
+        with Path(path, key).open("r") as f:
             self.assertEqual(self.json_list_string, f.read())
 
     @mock_aws

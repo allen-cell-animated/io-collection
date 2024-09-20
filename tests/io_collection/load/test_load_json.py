@@ -11,7 +11,7 @@ from io_collection.load.load_json import load_json
 
 
 class TestLoadJson(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.json_dict = {
             "ints": [random.randint(0, 100) for _ in range(100)],
             "floats": [random.random() for _ in range(100)],

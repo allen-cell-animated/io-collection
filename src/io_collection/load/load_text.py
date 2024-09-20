@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from io_collection.load.load_buffer import _load_buffer_from_s3
 
@@ -45,8 +45,9 @@ def _load_text_from_fs(path: str, key: str) -> str:
         Loaded text.
     """
 
-    full_path = os.path.join(path, key)
-    return open(full_path, "r", encoding="utf-8").read()
+    full_path = Path(path) / key
+    with full_path.open("r") as fileobj:
+        return fileobj.read()
 
 
 def _load_text_from_s3(bucket: str, key: str) -> str:

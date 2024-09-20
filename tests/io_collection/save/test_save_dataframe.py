@@ -13,7 +13,7 @@ from io_collection.save.save_dataframe import save_dataframe
 
 
 class TestSaveDataframe(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.dataframe = pd.DataFrame(
             {
                 "ints": [random.randint(0, 100) for _ in range(100)],
@@ -27,7 +27,7 @@ class TestSaveDataframe(unittest.TestCase):
             save_dataframe("", "key.ext", None)
 
     @patchfs
-    def test_save_dataframe_to_fs(self, fs):
+    def test_save_dataframe_to_fs(self, fs):  # noqa: ARG002
         path = "test/path"
         key = "key.csv"
 

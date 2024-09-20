@@ -1,13 +1,18 @@
-import io
-import os
-from typing import Any
+from __future__ import annotations
 
-import pandas as pd
+import io
+from pathlib import Path
+from typing import TYPE_CHECKING
 
 from io_collection.save.save_buffer import _save_buffer_to_s3
 
+if TYPE_CHECKING:
+    import pandas as pd
 
-def save_dataframe(location: str, key: str, dataframe: pd.DataFrame, **kwargs: Any) -> None:
+
+def save_dataframe(
+    location: str, key: str, dataframe: pd.DataFrame, **kwargs: int | str | list | dict | bool
+) -> None:
     """
     Save dataframe to key at specified location.
 
@@ -28,7 +33,8 @@ def save_dataframe(location: str, key: str, dataframe: pd.DataFrame, **kwargs: A
     """
 
     if not key.endswith(".csv"):
-        raise ValueError(f"key [ {key} ] must have [ csv ] extension")
+        message = f"key [ {key} ] must have [ csv ] extension"
+        raise ValueError(message)
 
     if location[:5] == "s3://":
         _save_dataframe_to_s3(location[5:], key, dataframe, **kwargs)
@@ -36,7 +42,9 @@ def save_dataframe(location: str, key: str, dataframe: pd.DataFrame, **kwargs: A
         _save_dataframe_to_fs(location, key, dataframe, **kwargs)
 
 
-def _save_dataframe_to_fs(path: str, key: str, dataframe: pd.DataFrame, **kwargs: Any) -> None:
+def _save_dataframe_to_fs(
+    path: str, key: str, dataframe: pd.DataFrame, **kwargs: int | str | list | dict | bool
+) -> None:
     """
     Save dataframe to key on local file system.
 
@@ -53,12 +61,14 @@ def _save_dataframe_to_fs(path: str, key: str, dataframe: pd.DataFrame, **kwargs
         passed to `pandas.to_csv`.
     """
 
-    full_path = os.path.join(path, key)
-    os.makedirs(os.path.split(full_path)[0], exist_ok=True)
+    full_path = Path(path) / key
+    full_path.parent.mkdir(parents=True, exist_ok=True)
     dataframe.to_csv(full_path, **kwargs)
 
 
-def _save_dataframe_to_s3(bucket: str, key: str, dataframe: pd.DataFrame, **kwargs: Any) -> None:
+def _save_dataframe_to_s3(
+    bucket: str, key: str, dataframe: pd.DataFrame, **kwargs: int | str | list | dict | bool
+) -> None:
     """
     Save dataframe to key in AWS S3 bucket.
 

@@ -1,5 +1,5 @@
 import io
-import os
+from pathlib import Path
 
 import boto3
 
@@ -48,8 +48,9 @@ def _load_buffer_from_fs(path: str, key: str) -> io.BytesIO:
         Loaded object buffer.
     """
 
-    full_path = os.path.join(path, key)
-    return io.BytesIO(open(full_path, "rb").read())
+    full_path = Path(path) / key
+    with full_path.open("rb") as fileobj:
+        return io.BytesIO(fileobj.read())
 
 
 def _load_buffer_from_s3(bucket: str, key: str) -> io.BytesIO:
@@ -78,7 +79,6 @@ def _load_buffer_from_s3(bucket: str, key: str) -> io.BytesIO:
     content_length = obj["ContentLength"]
 
     if content_length > MAX_CONTENT_LENGTH:
-        print("Loading chunks ...")
         body = bytearray()
         for chunk in obj["Body"].iter_chunks(chunk_size=MAX_CONTENT_LENGTH):
             body += chunk

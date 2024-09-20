@@ -8,7 +8,7 @@ from io_collection.keys.get_keys import get_keys
 
 
 class TestGetKeys(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.old_key = "old/key.ext"
         self.new_key = "new/key.ext"
         self.contents = b"abc"

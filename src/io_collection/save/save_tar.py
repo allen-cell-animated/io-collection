@@ -30,12 +30,10 @@ def save_tar(location: str, key: str, contents: list[str]) -> None:
     """
 
     if not key.endswith(".tar.xz"):
-        raise ValueError(f"key [ {key} ] must have [ tar.xz ] extension")
+        message = f"key [ {key} ] must have [ tar.xz ] extension"
+        raise ValueError(message)
 
-    if check_key(location, key):
-        existing_tar = load_tar(location, key)
-    else:
-        existing_tar = None
+    existing_tar = load_tar(location, key) if check_key(location, key) else None
 
     with io.BytesIO() as buffer:
         with tarfile.open(fileobj=buffer, mode="w:xz") as tar:

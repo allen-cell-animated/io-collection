@@ -1,11 +1,10 @@
 import io
 import pickle
-from typing import Any
 
 from io_collection.save.save_buffer import save_buffer
 
 
-def save_pickle(location: str, key: str, obj: Any) -> None:
+def save_pickle(location: str, key: str, obj: object) -> None:
     """
     Save pickled object to key at specified location.
 
@@ -23,7 +22,8 @@ def save_pickle(location: str, key: str, obj: Any) -> None:
     """
 
     if not key.endswith(".pkl"):
-        raise ValueError(f"key [ {key} ] must have [ pkl ] extension")
+        message = f"key [ {key} ] must have [ pkl ] extension"
+        raise ValueError(message)
 
     with io.BytesIO() as buffer:
         pickle.dump(obj, buffer)

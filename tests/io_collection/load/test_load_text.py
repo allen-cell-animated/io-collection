@@ -10,7 +10,7 @@ from io_collection.load.load_text import load_text
 
 
 class TestLoadText(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.text = "".join(random.choices(string.ascii_lowercase, k=100))
 
     @patchfs

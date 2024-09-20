@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 import boto3
 
@@ -40,9 +40,10 @@ def _change_key_on_fs(path: str, old_key: str, new_key: str) -> None:
         New object key.
     """
 
-    full_old_path = os.path.join(path, old_key)
-    full_new_path = os.path.join(path, new_key)
-    os.renames(full_old_path, full_new_path)
+    full_old_path = Path(path) / old_key
+    full_new_path = Path(path) / new_key
+    full_new_path.parent.mkdir(parents=True, exist_ok=True)
+    full_old_path.rename(full_new_path)
 
 
 def _change_key_on_s3(bucket: str, old_key: str, new_key: str) -> None:
@@ -51,7 +52,7 @@ def _change_key_on_s3(bucket: str, old_key: str, new_key: str) -> None:
 
     Parameters
     ----------
-    path
+    bucket
         AWS S3 bucket name.
     old_key
         Old object key.

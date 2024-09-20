@@ -31,7 +31,7 @@ class TestMakeKey(unittest.TestCase):
         year = random.randint(2000, 2050)
         month = random.randint(1, 12)
         day = random.randint(1, 28)
-        datetime_mock.now.return_value = datetime.date(year, month, day)
+        datetime_mock.datetime.now.return_value = datetime.date(year, month, day)
 
         subkeys = ["aaa", "{{timestamp}}", "ccc.ext"]
         expected_key = f"aaa/{year}-{month:02d}-{day:02d}/ccc.ext"

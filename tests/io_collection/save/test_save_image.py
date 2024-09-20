@@ -3,6 +3,7 @@ import pathlib
 import random
 import sys
 import unittest
+from pathlib import Path
 from unittest import mock
 
 import boto3
@@ -16,7 +17,7 @@ from io_collection.save.save_image import save_image
 
 
 class TestSaveImage(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.image_ome = np.zeros((1, 2, 3, 4, 5))
         self.image_bytes = self.image_ome.tobytes()
         self.color = tuple(random.choices(range(256), k=3))
@@ -40,11 +41,11 @@ class TestSaveImage(unittest.TestCase):
                 )
                 save_image(path, key, self.image_ome)
 
-                with open(f"{path}/{key}", "rb") as f:
+                with Path(path, key).open("rb") as f:
                     self.assertEqual(self.image_bytes, f.read())
 
     @patchfs
-    def test_save_image_to_fs_png(self, fs):
+    def test_save_image_to_fs_png(self, fs):  # noqa: ARG002
         path = "test/path"
         key = "key.png"
 

@@ -1,5 +1,5 @@
-import os
 import unittest
+from pathlib import Path
 
 import boto3
 from botocore.errorfactory import ClientError
@@ -10,7 +10,7 @@ from io_collection.keys.change_key import change_key
 
 
 class TestChangeKey(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.old_key = "old/key.ext"
         self.new_key = "new/key.ext"
         self.contents = b"abc"
@@ -24,10 +24,10 @@ class TestChangeKey(unittest.TestCase):
         change_key(path, self.old_key, self.new_key)
 
         # Check that old key no longer exists
-        self.assertFalse(os.path.exists(f"{path}/{self.old_key}"))
+        self.assertFalse(Path(path, self.old_key).exists())
 
         # Check that new key exists
-        self.assertTrue(os.path.exists(f"{path}/{self.new_key}"))
+        self.assertTrue(Path(path, self.new_key).exists())
 
         # Check that new key has correct contents
         contents = fs.get_object(f"{path}/{self.new_key}").byte_contents

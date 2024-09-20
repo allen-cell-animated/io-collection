@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 from unittest import mock
 
 import boto3
@@ -10,7 +11,7 @@ from io_collection.save.save_figure import save_figure
 
 
 class TestSaveFigure(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.kwargs = {"a": 1, "b": "2"}
         self.kwargs_repr = repr(self.kwargs)
         self.kwargs_bytes = self.kwargs_repr.encode("utf-8")
@@ -31,7 +32,7 @@ class TestSaveFigure(unittest.TestCase):
 
         save_figure(path, key, figure, **self.kwargs)
 
-        with open(f"{path}/{key}", "r", encoding="utf-8") as f:
+        with Path(path, key).open("r") as f:
             self.assertEqual(self.kwargs_repr, f.read())
 
     @mock_aws

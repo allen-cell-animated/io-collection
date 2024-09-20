@@ -1,5 +1,5 @@
 import io
-import os
+from pathlib import Path
 
 from io_collection.save.save_buffer import _save_buffer_to_s3
 
@@ -45,10 +45,10 @@ def _save_text_to_fs(path: str, key: str, text: str) -> None:
         Text to save.
     """
 
-    full_path = os.path.join(path, key)
-    os.makedirs(os.path.split(full_path)[0], exist_ok=True)
-    with open(full_path, "w", encoding="utf-8") as file:
-        file.write(text)
+    full_path = Path(path) / key
+    full_path.parent.mkdir(parents=True, exist_ok=True)
+    with full_path.open("w") as fileobj:
+        fileobj.write(text)
 
 
 def _save_text_to_s3(bucket: str, key: str, text: str, content_type: str) -> None:
