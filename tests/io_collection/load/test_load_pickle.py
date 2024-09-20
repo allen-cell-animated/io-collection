@@ -11,7 +11,7 @@ from io_collection.load.load_pickle import load_pickle
 
 
 class TestLoadPickle(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.object = {
             "ints": [random.randint(0, 100) for _ in range(100)],
             "floats": [random.random() for _ in range(100)],

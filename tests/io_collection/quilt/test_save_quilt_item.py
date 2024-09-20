@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 from unittest import mock
 
 import boto3
@@ -11,7 +12,7 @@ from io_collection.quilt.save_quilt_item import save_quilt_item
 
 class TestSaveQuiltItem(unittest.TestCase):
     @patchfs
-    def test_save_quilt_package_to_fs(self, fs):
+    def test_save_quilt_package_to_fs(self, fs):  # noqa: ARG002
         path = "test/path"
         key = "key.ext"
         item = "folder"
@@ -23,7 +24,7 @@ class TestSaveQuiltItem(unittest.TestCase):
         save_quilt_item(path, key, package_mock, item)
 
         package_mock.__getitem__.assert_called_with(item)
-        with open(f"{path}/{key}", "rb") as f:
+        with Path(path, key).open("rb") as f:
             self.assertEqual(contents, f.read())
 
     @mock_aws

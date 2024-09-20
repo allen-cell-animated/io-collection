@@ -1,5 +1,5 @@
-import os
 import unittest
+from pathlib import Path
 
 import boto3
 from moto import mock_aws
@@ -10,12 +10,12 @@ from io_collection.keys.remove_key import remove_key
 
 class TestRemoveKey(unittest.TestCase):
     @patchfs
-    def test_remove_key_on_fs_object_does_not_exist(self, fs):
+    def test_remove_key_on_fs_object_does_not_exist(self, fs):  # noqa: ARG002
         path = "test/path"
         key = "key.ext"
 
         remove_key(path, key)
-        self.assertFalse(os.path.exists(f"{path}/{key}"))
+        self.assertFalse(Path(path, key).exists())
 
     @patchfs
     def test_remove_key_on_fs_object_exists(self, fs):
@@ -25,7 +25,7 @@ class TestRemoveKey(unittest.TestCase):
         fs.create_file(f"{path}/{key}")
 
         remove_key(path, key)
-        self.assertFalse(os.path.exists(f"{path}/{key}"))
+        self.assertFalse(Path(path, key).exists())
 
     @mock_aws
     def test_copy_key_on_s3_object_does_not_exist(self):

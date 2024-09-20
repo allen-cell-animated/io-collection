@@ -1,5 +1,6 @@
 import io
 import unittest
+from pathlib import Path
 
 import boto3
 from moto import mock_aws
@@ -10,14 +11,14 @@ from io_collection.save.save_buffer import save_buffer
 
 class TestSaveBuffer(unittest.TestCase):
     @patchfs
-    def test_save_buffer_to_fs(self, fs):
+    def test_save_buffer_to_fs(self, fs):  # noqa: ARG002
         path = "test/path"
         key = "key.ext"
         contents = io.BytesIO(b"abc")
 
         save_buffer(path, key, contents)
 
-        with open(f"{path}/{key}", "rb") as f:
+        with Path(path, key).open("rb") as f:
             self.assertEqual(contents.getvalue(), f.read())
 
     @mock_aws

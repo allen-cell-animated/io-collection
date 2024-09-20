@@ -1,5 +1,5 @@
 import io
-import os
+from pathlib import Path
 
 import boto3
 
@@ -47,10 +47,11 @@ def _save_buffer_to_fs(path: str, key: str, buffer: io.BytesIO) -> None:
         Content buffer.
     """
 
-    full_path = os.path.join(path, key)
-    os.makedirs(os.path.split(full_path)[0], exist_ok=True)
-    with open(full_path, "wb") as file:
-        file.write(buffer.getvalue())
+    full_path = Path(path) / key
+    full_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with full_path.open("wb") as fileobj:
+        fileobj.write(buffer.getvalue())
 
 
 def _save_buffer_to_s3(bucket: str, key: str, buffer: io.BytesIO, content_type: str) -> None:

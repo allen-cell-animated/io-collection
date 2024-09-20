@@ -9,7 +9,7 @@ from io_collection.keys.check_key import check_key
 
 class TestCheckKey(unittest.TestCase):
     @patchfs
-    def test_check_key_on_fs_object_does_not_exist(self, fs):
+    def test_check_key_on_fs_object_does_not_exist(self, fs):  # noqa: ARG002
         path = "test/path"
         key = "key.ext"
 

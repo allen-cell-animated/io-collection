@@ -1,11 +1,11 @@
-import os
+from pathlib import Path
 
 import boto3
 
 
 def remove_key(location: str, key: str) -> None:
     """
-    Removes object key at specified location.
+    Remove object key at specified location.
 
     Method will remove from the S3 bucket if the location begins with the
     **s3://** protocol, otherwise it assumes the location is a local path.
@@ -36,10 +36,10 @@ def _remove_key_on_fs(path: str, key: str) -> None:
         Object key.
     """
 
-    full_path = os.path.join(path, key)
+    full_path = Path(path) / key
 
-    if os.path.isfile(full_path):
-        os.remove(full_path)
+    if full_path.is_file():
+        full_path.unlink()
 
 
 def _remove_key_on_s3(bucket: str, key: str) -> None:
@@ -48,7 +48,7 @@ def _remove_key_on_s3(bucket: str, key: str) -> None:
 
     Parameters
     ----------
-    path
+    bucket
         AWS S3 bucket name.
     key
         Object key.

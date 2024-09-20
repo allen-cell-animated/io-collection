@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 
 import boto3
 from moto import mock_aws
@@ -9,14 +10,14 @@ from io_collection.save.save_text import save_text
 
 class TestSaveText(unittest.TestCase):
     @patchfs
-    def test_save_text_to_fs(self, fs):
+    def test_save_text_to_fs(self, fs):  # noqa: ARG002
         path = "test/path"
         key = "key.txt"
         contents = "abc"
 
         save_text(path, key, contents)
 
-        with open(f"{path}/{key}", "r", encoding="utf-8") as f:
+        with Path(f"{path}/{key}").open("r") as f:
             self.assertEqual(contents, f.read())
 
     @mock_aws

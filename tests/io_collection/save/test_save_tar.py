@@ -11,7 +11,7 @@ from io_collection.save.save_tar import save_tar
 
 
 class TestSaveTar(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.contents = {
             "a.ext": io.BytesIO(random.randbytes(100)),
             "b.ext": io.BytesIO(random.randbytes(100)),

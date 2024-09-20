@@ -20,5 +20,4 @@ def load_quilt_package(quilt_package: str, quilt_registry: str) -> quilt3.Packag
         The Quilt package.
     """
 
-    package = quilt3.Package.browse(quilt_package, quilt_registry)
-    return package
+    return quilt3.Package.browse(quilt_package, quilt_registry)

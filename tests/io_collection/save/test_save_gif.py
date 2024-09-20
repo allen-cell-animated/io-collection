@@ -12,7 +12,7 @@ from io_collection.save.save_gif import save_gif
 
 
 class TestSaveGif(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.colors = [tuple(random.choices(range(256), k=3)) for _ in range(5)]
 
         self.frames = {}

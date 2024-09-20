@@ -12,7 +12,7 @@ from io_collection.load.load_dataframe import load_dataframe
 
 
 class TestLoadDataFrame(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.dataframe = pd.DataFrame(
             {
                 "ints": [random.randint(0, 100) for _ in range(100)],

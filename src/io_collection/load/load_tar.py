@@ -1,5 +1,5 @@
-import os
 import tarfile
+from pathlib import Path
 
 from io_collection.load.load_buffer import _load_buffer_from_s3
 
@@ -27,7 +27,8 @@ def load_tar(location: str, key: str) -> tarfile.TarFile:
     """
 
     if not key.endswith(".tar.xz"):
-        raise ValueError(f"key [ {key} ] must have [ tar.xz ] extension")
+        message = f"key [ {key} ] must have [ tar.xz ] extension"
+        raise ValueError(message)
 
     if location[:5] == "s3://":
         return _load_tar_from_s3(location[5:], key)
@@ -51,7 +52,7 @@ def _load_tar_from_fs(path: str, key: str) -> tarfile.TarFile:
         Loaded tar archive.
     """
 
-    full_path = os.path.join(path, key)
+    full_path = Path(path) / key
     return tarfile.open(full_path, mode="r:xz")
 
 

@@ -1,12 +1,15 @@
-import os
-from typing import Any
+from __future__ import annotations
+
+from pathlib import Path
 
 import pandas as pd
 
 from io_collection.load.load_buffer import _load_buffer_from_s3
 
 
-def load_dataframe(location: str, key: str, **kwargs: Any) -> pd.DataFrame:
+def load_dataframe(
+    location: str, key: str, **kwargs: int | str | list | dict | bool
+) -> pd.DataFrame:
     """
     Load key as dataframe from specified location.
 
@@ -30,14 +33,17 @@ def load_dataframe(location: str, key: str, **kwargs: Any) -> pd.DataFrame:
     """
 
     if not key.endswith(".csv"):
-        raise ValueError(f"key [ {key} ] must have [ csv ] extension")
+        message = f"key [ {key} ] must have [ csv ] extension"
+        raise ValueError(message)
 
     if location[:5] == "s3://":
         return _load_dataframe_from_s3(location[5:], key, **kwargs)
     return _load_dataframe_from_fs(location, key, **kwargs)
 
 
-def _load_dataframe_from_fs(path: str, key: str, **kwargs: Any) -> pd.DataFrame:
+def _load_dataframe_from_fs(
+    path: str, key: str, **kwargs: int | str | list | dict | bool
+) -> pd.DataFrame:
     """
     Load key as dataframe from local file system.
 
@@ -57,11 +63,13 @@ def _load_dataframe_from_fs(path: str, key: str, **kwargs: Any) -> pd.DataFrame:
         Loaded dataframe.
     """
 
-    full_path = os.path.join(path, key)
+    full_path = Path(path) / key
     return pd.read_csv(full_path, **kwargs)
 
 
-def _load_dataframe_from_s3(bucket: str, key: str, **kwargs: Any) -> pd.DataFrame:
+def _load_dataframe_from_s3(
+    bucket: str, key: str, **kwargs: int | str | list | dict | bool
+) -> pd.DataFrame:
     """
     Load key as dataframe from AWS S3 bucket.
 

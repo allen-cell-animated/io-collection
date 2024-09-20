@@ -1,11 +1,12 @@
+from __future__ import annotations
+
 import json
 import re
-from typing import Union
 
 from io_collection.save.save_text import save_text
 
 
-def save_json(location: str, key: str, obj: Union[dict, list], levels: int = 5) -> None:
+def save_json(location: str, key: str, obj: dict | list, levels: int = 5) -> None:
     """
     Save dict or list as json to key at specified location.
 
@@ -30,7 +31,8 @@ def save_json(location: str, key: str, obj: Union[dict, list], levels: int = 5) 
     """
 
     if not key.endswith(".json"):
-        raise ValueError(f"key [ {key} ] must have [ json ] extension")
+        message = f"key [ {key} ] must have [ json ] extension"
+        raise ValueError(message)
 
     contents = json.dumps(obj, indent=2)
 

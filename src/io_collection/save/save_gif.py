@@ -19,12 +19,13 @@ def save_gif(location: str, key: str, frame_keys: list[str]) -> None:
         Object location (local path or S3 bucket).
     key
         Object key ending in `.gif`.
-    contents
+    frame_keys
         List of frame keys to include in the gif.
     """
 
     if not key.endswith(".gif"):
-        raise ValueError(f"key [ {key} ] must have [ gif ] extension")
+        message = f"key [ {key} ] must have [ gif ] extension"
+        raise ValueError(message)
 
     with io.BytesIO() as buffer:
         frames = [Image.open(load_buffer(location, frame_key)) for frame_key in frame_keys]

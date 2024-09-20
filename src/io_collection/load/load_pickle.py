@@ -1,10 +1,9 @@
 import pickle
-from typing import Any
 
 from io_collection.load.load_buffer import load_buffer
 
 
-def load_pickle(location: str, key: str) -> Any:
+def load_pickle(location: str, key: str) -> object:
     """
     Load key as pickled object from specified location.
 
@@ -25,7 +24,8 @@ def load_pickle(location: str, key: str) -> Any:
     """
 
     if not key.endswith(".pkl"):
-        raise ValueError(f"key [ {key} ] must have [ pkl ] extension")
+        message = f"key [ {key} ] must have [ pkl ] extension"
+        raise ValueError(message)
 
     buffer = load_buffer(location, key)
     return pickle.loads(buffer.read())
