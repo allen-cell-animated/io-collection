@@ -235,7 +235,7 @@
         </div>
         <article role="main">
           <h1>Source code for io_collection.keys.remove_key</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">boto3</span>
 
@@ -244,7 +244,7 @@
 <a class="viewcode-back" href="../../../_summary/io_collection.keys.remove_key.html#io_collection.keys.remove_key.remove_key">[docs]</a>
 <span class="k">def</span> <span class="nf">remove_key</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Removes object key at specified location.</span>
+<span class="sd">    Remove object key at specified location.</span>
 
 <span class="sd">    Method will remove from the S3 bucket if the location begins with the</span>
 <span class="sd">    **s3://** protocol, otherwise it assumes the location is a local path.</span>
@@ -276,10 +276,10 @@
 <span class="sd">        Object key.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="n">full_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="n">key</span>
 
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">full_path</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">full_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="n">full_path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 
 
 <span class="k">def</span> <span class="nf">_remove_key_on_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -288,7 +288,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    path</span>
+<span class="sd">    bucket</span>
 <span class="sd">        AWS S3 bucket name.</span>
 <span class="sd">    key</span>
 <span class="sd">        Object key.</span>

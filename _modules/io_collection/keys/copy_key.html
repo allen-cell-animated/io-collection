@@ -235,8 +235,8 @@
         </div>
         <article role="main">
           <h1>Source code for io_collection.keys.copy_key</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">shutil</span>
+<span></span><span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">boto3</span>
 
@@ -281,9 +281,9 @@
 <span class="sd">        New object key.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">full_old_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">old_key</span><span class="p">)</span>
-    <span class="n">full_new_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">new_key</span><span class="p">)</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">full_new_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">full_old_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="n">old_key</span>
+    <span class="n">full_new_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="n">new_key</span>
+    <span class="n">full_new_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">full_old_path</span><span class="p">,</span> <span class="n">full_new_path</span><span class="p">)</span>
 
 
@@ -293,7 +293,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    path</span>
+<span class="sd">    bucket</span>
 <span class="sd">        AWS S3 bucket name.</span>
 <span class="sd">    old_key</span>
 <span class="sd">        Old object key.</span>

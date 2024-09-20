@@ -236,7 +236,7 @@
         <article role="main">
           <h1>Source code for io_collection.load.load_buffer</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">boto3</span>
 
@@ -288,8 +288,9 @@
 <span class="sd">        Loaded object buffer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">full_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="n">key</span>
+    <span class="k">with</span> <span class="n">full_path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fileobj</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 
 
 <span class="k">def</span> <span class="nf">_load_buffer_from_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">:</span>
@@ -318,7 +319,6 @@
     <span class="n">content_length</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s2">&quot;ContentLength&quot;</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">content_length</span> <span class="o">&gt;</span> <span class="n">MAX_CONTENT_LENGTH</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading chunks ...&quot;</span><span class="p">)</span>
         <span class="n">body</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">[</span><span class="s2">&quot;Body&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iter_chunks</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="n">MAX_CONTENT_LENGTH</span><span class="p">):</span>
             <span class="n">body</span> <span class="o">+=</span> <span class="n">chunk</span>

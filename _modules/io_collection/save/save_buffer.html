@@ -236,7 +236,7 @@
         <article role="main">
           <h1>Source code for io_collection.save.save_buffer</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">boto3</span>
 
@@ -287,10 +287,11 @@
 <span class="sd">        Content buffer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">full_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+    <span class="n">full_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">/</span> <span class="n">key</span>
+    <span class="n">full_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">full_path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fileobj</span><span class="p">:</span>
+        <span class="n">fileobj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
 
 
 <span class="k">def</span> <span class="nf">_save_buffer_to_s3</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">,</span> <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

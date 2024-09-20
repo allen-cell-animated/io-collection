@@ -235,15 +235,15 @@
         </div>
         <article role="main">
           <h1>Source code for io_collection.keys.make_key</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 
 <div class="viewcode-block" id="make_key">
 <a class="viewcode-back" href="../../../_summary/io_collection.keys.make_key.html#io_collection.keys.make_key.make_key">[docs]</a>
 <span class="k">def</span> <span class="nf">make_key</span><span class="p">(</span><span class="o">*</span><span class="n">subkeys</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Combines given subkeys into a single key.</span>
+<span class="sd">    Combine given subkeys into a single key.</span>
 
 <span class="sd">    If any subkeys include **{{timestamp}}**, it will be replaced with the</span>
 <span class="sd">    current date formatted as **YYYY-MM-DD**. Any instances of double</span>
@@ -257,15 +257,12 @@
 <span class="sd">        The key.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="o">*</span><span class="n">subkeys</span><span class="p">)</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">subkeys</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">subkeys</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
 
-    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;{{timestamp}}&quot;</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
 
-    <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_.&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">key</span></div>
+    <span class="k">return</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_.&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span></div>
 
 </pre></div>
         </article>
