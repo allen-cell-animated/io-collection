@@ -45,8 +45,8 @@ def _get_keys_on_fs(path: str, prefix: str) -> list[str]:
         List of all object keys on the local file system.
     """
 
-    glob_pattern = f"{path}/{prefix}/**/*".replace("//", "/")
-    all_files = Path().rglob(glob_pattern)
+    glob_pattern = f"{prefix}/**/*".replace("//", "/")
+    all_files = Path(path).rglob(glob_pattern)
     regular_files = [str(file) for file in all_files if not file.is_dir()]
     return [file.replace(path, "").strip("/") for file in regular_files]
 
