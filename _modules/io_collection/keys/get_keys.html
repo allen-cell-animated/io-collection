@@ -183,6 +183,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_summary/io_collection.keys.check_key.html">check_key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_summary/io_collection.keys.copy_key.html">copy_key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_summary/io_collection.keys.get_keys.html">get_keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_summary/io_collection.keys.group_keys.html">group_keys</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_summary/io_collection.keys.make_key.html">make_key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_summary/io_collection.keys.remove_key.html">remove_key</a></li>
 </ul>
@@ -285,8 +286,8 @@
 <span class="sd">        List of all object keys on the local file system.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">glob_pattern</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">/**/*&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;//&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span>
-    <span class="n">all_files</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="n">glob_pattern</span><span class="p">)</span>
+    <span class="n">glob_pattern</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">/**/*&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;//&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span>
+    <span class="n">all_files</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="n">glob_pattern</span><span class="p">)</span>
     <span class="n">regular_files</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">all_files</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()]</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">file</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">regular_files</span><span class="p">]</span>
 

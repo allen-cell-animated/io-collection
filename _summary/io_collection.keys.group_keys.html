@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="save_json" href="io_collection.save.save_json.html" /><link rel="prev" title="save_gif" href="io_collection.save.save_gif.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="make_key" href="io_collection.keys.make_key.html" /><link rel="prev" title="get_keys" href="io_collection.keys.get_keys.html" />
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2023.09.10 -->
-        <title>save_image - I/O Collection 1.0.0</title>
+        <title>group_keys - I/O Collection 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -167,24 +167,24 @@
 <li class="toctree-l2"><a class="reference internal" href="io_collection.load.load_text.html">load_text</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="io_collection.save.html">io_collection.save</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of io_collection.save</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="io_collection.save.html">io_collection.save</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of io_collection.save</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.save.save_buffer.html">save_buffer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.save.save_dataframe.html">save_dataframe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.save.save_figure.html">save_figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.save.save_gif.html">save_gif</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">save_image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io_collection.save.save_image.html">save_image</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.save.save_json.html">save_json</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.save.save_pickle.html">save_pickle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.save.save_tar.html">save_tar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.save.save_text.html">save_text</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="io_collection.keys.html">io_collection.keys</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of io_collection.keys</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="io_collection.keys.html">io_collection.keys</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of io_collection.keys</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="io_collection.keys.change_key.html">change_key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.keys.check_key.html">check_key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.keys.copy_key.html">copy_key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.keys.get_keys.html">get_keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="io_collection.keys.group_keys.html">group_keys</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">group_keys</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.keys.make_key.html">make_key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="io_collection.keys.remove_key.html">remove_key</a></li>
 </ul>
@@ -237,21 +237,18 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-io_collection.save.save_image">
-<span id="save-image"></span><h1>save_image<a class="headerlink" href="#module-io_collection.save.save_image" title="Link to this heading">¶</a></h1>
+          <section id="module-io_collection.keys.group_keys">
+<span id="group-keys"></span><h1>group_keys<a class="headerlink" href="#module-io_collection.keys.group_keys" title="Link to this heading">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="io_collection.save.save_image.save_image">
-<span class="sig-name descname"><span class="pre">save_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/io_collection/save/save_image.html#save_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.save.save_image.save_image" title="Link to this definition">¶</a></dt>
-<dd><p>Save image array to key at specified location.</p>
-<p>Method will save to the S3 bucket if the location begins with the <strong>s3://</strong>
-protocol, otherwise it assumes the location is a local path.</p>
+<dt class="sig sig-object py" id="io_collection.keys.group_keys.group_keys">
+<span class="sig-name descname"><span class="pre">group_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/io_collection/keys/group_keys.html#group_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#io_collection.keys.group_keys.group_keys" title="Link to this definition">¶</a></dt>
+<dd><p>Group keys based on individual key parts.</p>
+<p>A key is composed of parts separated by a single underscores (<cite>_</cite>). Keys are
+grouped such that each key group consists of the subset of keys with the
+matching part at the given position.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>location</strong> – Object location (local path or S3 bucket).</p></li>
-<li><p><strong>key</strong> – Object key ending in <cite>.ome.tiff</cite> or <cite>.png</cite>.</p></li>
-<li><p><strong>image</strong> – Image array.</p></li>
-</ul>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The map of key groups to keys.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -263,23 +260,23 @@ protocol, otherwise it assumes the location is a local path.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="io_collection.save.save_json.html">
+          <a class="next-page" href="io_collection.keys.make_key.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">save_json</div>
+                <div class="title">make_key</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="io_collection.save.save_gif.html">
+          <a class="prev-page" href="io_collection.keys.get_keys.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">save_gif</div>
+                <div class="title">get_keys</div>
                 
               </div>
             </a>
@@ -313,8 +310,8 @@ protocol, otherwise it assumes the location is a local path.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">save_image</a><ul>
-<li><a class="reference internal" href="#io_collection.save.save_image.save_image"><code class="docutils literal notranslate"><span class="pre">save_image()</span></code></a></li>
+<li><a class="reference internal" href="#">group_keys</a><ul>
+<li><a class="reference internal" href="#io_collection.keys.group_keys.group_keys"><code class="docutils literal notranslate"><span class="pre">group_keys()</span></code></a></li>
 </ul>
 </li>
 </ul>

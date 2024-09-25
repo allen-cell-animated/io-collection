@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2023.09.10 -->
-        <title>io_collection.save.save_tar - I/O Collection 1.0.0</title>
+        <title>io_collection.keys.group_keys - I/O Collection 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -235,59 +235,41 @@
           </label>
         </div>
         <article role="main">
-          <h1>Source code for io_collection.save.save_tar</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">tarfile</span>
-
-<span class="kn">from</span> <span class="nn">io_collection.keys.check_key</span> <span class="kn">import</span> <span class="n">check_key</span>
-<span class="kn">from</span> <span class="nn">io_collection.load.load_buffer</span> <span class="kn">import</span> <span class="n">load_buffer</span>
-<span class="kn">from</span> <span class="nn">io_collection.load.load_tar</span> <span class="kn">import</span> <span class="n">load_tar</span>
-<span class="kn">from</span> <span class="nn">io_collection.save.save_buffer</span> <span class="kn">import</span> <span class="n">save_buffer</span>
+          <h1>Source code for io_collection.keys.group_keys</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">groupby</span>
 
 
-<div class="viewcode-block" id="save_tar">
-<a class="viewcode-back" href="../../../_summary/io_collection.save.save_tar.html#io_collection.save.save_tar.save_tar">[docs]</a>
-<span class="k">def</span> <span class="nf">save_tar</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="group_keys">
+<a class="viewcode-back" href="../../../_summary/io_collection.keys.group_keys.html#io_collection.keys.group_keys.group_keys">[docs]</a>
+<span class="k">def</span> <span class="nf">group_keys</span><span class="p">(</span><span class="n">keys</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Save tar archive to key at specified location.</span>
+<span class="sd">    Group keys based on individual key parts.</span>
 
-<span class="sd">    Method will save to the S3 bucket if the location begins with the **s3://**</span>
-<span class="sd">    protocol, otherwise it assumes the location is a local path.</span>
+<span class="sd">    A key is composed of parts separated by a single underscores (`_`). Keys are</span>
+<span class="sd">    grouped such that each key group consists of the subset of keys with the</span>
+<span class="sd">    matching part at the given position.</span>
 
-<span class="sd">    If the archive already exists, all objects in the existing archive will be</span>
-<span class="sd">    copied into the new archive, along with the new contents.</span>
-
-<span class="sd">    Method currently only supports `xz` compression.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    location</span>
-<span class="sd">        Object location (local path or S3 bucket).</span>
-<span class="sd">    key</span>
-<span class="sd">        Object key ending in `.tar.xz`.</span>
-<span class="sd">    contents</span>
-<span class="sd">        List of content keys to include in the archive.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :</span>
+<span class="sd">        The map of key groups to keys.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tar.xz&quot;</span><span class="p">):</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;key [ </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> ] must have [ tar.xz ] extension&quot;</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">]</span>
+    <span class="n">num_parts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">part</span><span class="p">)</span> <span class="o">==</span> <span class="n">num_parts</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;All keys must have the same number of parts&quot;</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-    <span class="n">existing_tar</span> <span class="o">=</span> <span class="n">load_tar</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="k">if</span> <span class="n">check_key</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span> <span class="k">as</span> <span class="n">buffer</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">buffer</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w:xz&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">existing_tar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">existing_tar</span><span class="o">.</span><span class="n">getmembers</span><span class="p">():</span>
-                    <span class="n">tar</span><span class="o">.</span><span class="n">addfile</span><span class="p">(</span><span class="n">member</span><span class="p">,</span> <span class="n">existing_tar</span><span class="o">.</span><span class="n">extractfile</span><span class="p">(</span><span class="n">member</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">group_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_parts</span><span class="p">):</span>
+        <span class="n">sorted_keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="p">[</span><span class="n">group_index</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="n">sorted_keys</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="p">[</span><span class="n">group_index</span><span class="p">]):</span>
+            <span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">part</span><span class="p">]</span>
 
-            <span class="k">for</span> <span class="n">content_key</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
-                <span class="n">content</span> <span class="o">=</span> <span class="n">load_buffer</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">content_key</span><span class="p">)</span>
-                <span class="n">info</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">TarInfo</span><span class="p">(</span><span class="n">content_key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-                <span class="n">info</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">getbuffer</span><span class="p">()</span><span class="o">.</span><span class="n">nbytes</span>
-                <span class="n">tar</span><span class="o">.</span><span class="n">addfile</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">fileobj</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
-
-        <span class="n">save_buffer</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">groups</span></div>
 
 </pre></div>
         </article>
