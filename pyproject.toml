@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "io-collection"
-version = "1.0.0"
+version = "1.1.0"
 description = "Collection of tasks for I/O."
 authors = [
     "Jessica S. Yu <jesyu@uw.edu>"
