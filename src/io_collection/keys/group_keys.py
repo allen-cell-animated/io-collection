@@ -22,10 +22,11 @@ def group_keys(keys: list[str]) -> dict[str, list[str]]:
         message = "All keys must have the same number of parts"
         raise ValueError(message)
 
-    return {
-        group: ["_".join(p) for p in part]
-        for group_index in range(num_parts)
-        for group, part in groupby(
-            sorted(parts, key=lambda k: k[group_index]), lambda k, i=group_index: k[i]
-        )
-    }
+    groups = {}
+
+    for group_index in range(num_parts):
+        sorted_keys = sorted(parts, key=lambda k: k[group_index])
+        for group, part in groupby(sorted_keys, key=lambda k: k[group_index]):
+            groups[group] = ["_".join(p) for p in part]
+
+    return groups
