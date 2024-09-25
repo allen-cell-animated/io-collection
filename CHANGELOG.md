@@ -1,3 +1,15 @@
+# [v1.1.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v1.1.0) - 2024-09-25
+
+> Compare with [v1.0.0](https://github.com/allen-cell-animated/io-collection/compare/v1.0.0...v1.1.0)
+
+### Features
+
+- Add group keys task by [@jessicasyu](https://github.com/jessicasyu) in [#66](https://github.com/allen-cell-animated/io-collection/pull/66)
+
+### Admin
+
+- Add Python 3.11 to workflows and apply ruff linting by [@jessicasyu](https://github.com/jessicasyu) in [#65](https://github.com/allen-cell-animated/io-collection/pull/65)
+
 # [v1.0.0](https://github.com/allen-cell-animated/io-collection/releases/tag/v1.0.0) - 2024-08-02
 
 > Compare with [v0.10.2](https://github.com/allen-cell-animated/io-collection/compare/v0.10.2...v1.0.0)
